@@ -1,0 +1,5 @@
+countries with all goals and both windows: 44
+life_exp: n=89 CV corr(pred, train slope)=0.21 | pred vs test slope=0.37 | raw train vs test slope=-0.00
+child_surv: n=89 CV corr(pred, train slope)=0.36 | pred vs test slope=0.54 | raw train vs test slope=0.05
+sec_enrol: n=63 CV corr(pred, train slope)=-0.13 | pred vs test slope=0.06 | raw train vs test slope=0.25
+prim_compl: n=53 CV corr(pred, train slope)=0.38 | pred vs test slope=0.19 | raw train vs test slope=-0.01
