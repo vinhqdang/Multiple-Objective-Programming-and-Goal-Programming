@@ -47,12 +47,14 @@ def ippa(A, b, lnT, u, tau=0.3, eta=1.0, iters=60, theta0=None, tol=1e-7):
         hist.append(psi(th, A, b, lnT))
     return th, np.array(hist)
 
-def pareto_gap(theta_hat, A, b, lnT, return_point=False):
+def pareto_gap(theta_hat, A, b, lnT, return_point=False, lo=None, hi=None):
     """Largest simultaneous improvement t >= 0 available in every objective of the (true) problem.
     t = 0 iff theta_hat is weakly Pareto optimal (convex case)."""
     n = len(theta_hat); th = cp.Variable(n); t = cp.Variable()
     ref = psi(theta_hat, A, b, lnT)
     cons = [cp.pos(lnT - b - A @ th) <= ref[:-1] - t, cp.sum(cp.exp(th)) <= ref[-1] - t]
+    if lo is not None: cons += [th >= lo]
+    if hi is not None: cons += [th <= hi]
     p = cp.Problem(cp.Maximize(t), cons); p.solve(solver=cp.CLARABEL)
     g = max(0.0, p.value) if p.value is not None else np.nan
     return (g, th.value) if return_point else g
