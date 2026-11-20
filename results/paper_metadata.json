@@ -1,0 +1,178 @@
+[
+ {
+  "n": 1,
+  "doi": "10.1007/s10479-026-07356-x",
+  "title": "Efficiency and environmental performance evaluation of the water industry: a dynamic four-stage network data envelopment analysis",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 2,
+  "doi": "10.1007/s10479-026-07364-x",
+  "title": "A multi-objective stochastic home health care routing and scheduling problem under demand and service time uncertainty",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 3,
+  "doi": "10.1007/s10479-026-07355-y",
+  "title": "Integrating internal and external attributes in clustering: a goal programming-data envelopment analysis model",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 4,
+  "doi": "10.1007/s10479-026-07272-0",
+  "title": "Environmental and financial performance in the S&amp;P 500: a novel mcdm approach",
+  "abstract_crossref": "Abstract \n                   This paper proposes a novel multi-criteria decision-making (MCDM) framework to analyze the interplay between environmental and financial dimensions in corporate performance. Building on an optimized signal decomposition of the polar factorization, the method calibrates trade-off matrices under alternative scenarios privileging criterion importance, trade-off strength, or balanced relations. Applied to a panel of S&amp;P 500 firms, the approach generates performance scores and entropy-weighted consensus rankings across three classical MCDM methods\u2014TOPSIS, VIKOR, and COPRAS\u2014under nine scenario\u2013method combinations. The empirical results highlight that financial synergies, especially those linking equity, liabilities, assets, and cash flow, dominate across sectors, while environmental and social criteria appear only in specific contexts. ESG variables are structurally linked to firm scale in Basic Materials and Energy, to financing flows in Real Estate, and to decarbonization costs in Utilities, but remain marginal in Financials and Consumer Cyclicals. Negative trade-offs are rare, emerging mainly in tensions between efficiency and scale or responsibility and emissions. Overall, the findings demonstrate that ESG trade-offs in the S&amp;P 500 are sector-contingent, reflecting differences in regulatory exposure, reputational pressure, and operational structure. The proposed framework contributes to both methodology and practice by offering a systematic tool to disentangle the relative weight of financial and environmental criteria in corporate decision-making.",
+  "cc_license": true,
+  "is_oa": true,
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s10479-026-07272-0.pdf",
+  "abstract_openalex": "Abstract This paper proposes a novel multi-criteria decision-making (MCDM) framework to analyze the interplay between environmental and financial dimensions in corporate performance. Building on an optimized signal decomposition of the polar factorization, the method calibrates trade-off matrices under alternative scenarios privileging criterion importance, trade-off strength, or balanced relations. Applied to a panel of S&P 500 firms, the approach generates performance scores and entropy-weighted consensus rankings across three classical MCDM methods\u2014TOPSIS, VIKOR, and COPRAS\u2014under nine scenario\u2013method combinations. The empirical results highlight that financial synergies, especially those linking equity, liabilities, assets, and cash flow, dominate across sectors, while environmental and social criteria appear only in specific contexts. ESG variables are structurally linked to firm scale in Basic Materials and Energy, to financing flows in Real Estate, and to decarbonization costs in Utilities, but remain marginal in Financials and Consumer Cyclicals. Negative trade-offs are rare, emerging mainly in tensions between efficiency and scale or responsibility and emissions. Overall, the findings demonstrate that ESG trade-offs in the S&P 500 are sector-contingent, reflecting differences in regulatory exposure, reputational pressure, and operational structure. The proposed framework contributes to both methodology and practice by offering a systematic tool to disentangle the relative weight of financial and environmental criteria in corporate decision-making."
+ },
+ {
+  "n": 5,
+  "doi": "10.1007/s10479-026-07270-2",
+  "title": "Artificial intelligence for socially responsible investment: a multi-objective decision-making framework",
+  "abstract_crossref": "Abstract \n                   This paper presents a novel multi-objetive methodology for optimizing financial investment decisions. To do this, we integrate machine learning (ML) techniques into a Black\u2013Litterman (BL) model, using conditional value at risk (CVaR) as a risk measure within a socially responsible investment framework. The proposed approach employs ML models, including long short-term memory, random forest, artificial neural networks, gated recurrent unit, and autoregressive integrated moving average (ARIMA), to forecast asset returns. These predictions are aggregated through a model based on historical performance, and they are incorporated into a Black\u2013Litterman\u2013CVaR model (BL\u2013ML\u2013CVaR). Environmental, social, and governance (ESG) criteria are used to construct portfolios that align financial returns with sustainable investment practices. Results demonstrate that the BL\u2013ML\u2013CVaR portfolio offers higher returns and balanced risk compared to traditional models, with the ESG-integrated version achieving competitive performance while adhering to sustainability goals. This study provides valuable insights into how ML-driven models can enhance investment strategies in some emerging sectors facing environmental challenges, offering a path toward more sustainable and responsible financial practices.",
+  "cc_license": true,
+  "is_oa": true,
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s10479-026-07270-2.pdf",
+  "abstract_openalex": "Abstract This paper presents a novel multi-objetive methodology for optimizing financial investment decisions. To do this, we integrate machine learning (ML) techniques into a Black\u2013Litterman (BL) model, using conditional value at risk (CVaR) as a risk measure within a socially responsible investment framework. The proposed approach employs ML models, including long short-term memory, random forest, artificial neural networks, gated recurrent unit, and autoregressive integrated moving average (ARIMA), to forecast asset returns. These predictions are aggregated through a model based on historical performance, and they are incorporated into a Black\u2013Litterman\u2013CVaR model (BL\u2013ML\u2013CVaR). Environmental, social, and governance (ESG) criteria are used to construct portfolios that align financial returns with sustainable investment practices. Results demonstrate that the BL\u2013ML\u2013CVaR portfolio offers higher returns and balanced risk compared to traditional models, with the ESG-integrated version achieving competitive performance while adhering to sustainability goals. This study provides valuable insights into how ML-driven models can enhance investment strategies in some emerging sectors facing environmental challenges, offering a path toward more sustainable and responsible financial practices."
+ },
+ {
+  "n": 6,
+  "doi": "10.1007/s10479-026-07265-z",
+  "title": "Equity-oriented design of vaccine supply chains under pandemic conditions through bi-level fuzzy goal programming",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 7,
+  "doi": "10.1007/s10479-026-07173-2",
+  "title": "A hybrid fuzzy MCDM framework for enhancing urban recycling in Chilean regions",
+  "abstract_crossref": "Abstract \n                   Urban expansion in Chile has proceeded so quickly that it has overwhelmed city planners and their efforts to implement sustainable recycling systems. The possibility of recycling in 16 Chilean regions is analyzed in this work, employing a new type of decision-support framework that combines expert opinion (under uncertainty) and objective information analysis through fuzzy logic. First, we elicit stakeholder opinions as simple degrees of belief expressed in natural language using a fuzzy degree modifier to model the vagueness encountered in real-world applications. Then we obtain data-driven weights by assessing the uncertainty and conflicts of each criterion. We then combine such subjective and objective weights using a multisourcing aggregation approach to derive stable regional comparisons. The findings highlight Governance &amp; Policy and Infrastructure &amp; Technology as the two most important dimensions for a successful urban recycling programme. Areas like Biob\u00edo and Valpara\u00edso stand out as star performers, with practical lessons for policy. This framework is designed to balance simplicity and understanding for non-experts, while offering empirical robustness for domain experts. It can also be used in investment and regulatory decisions to enhance Chile's circular economy (CE).",
+  "cc_license": true,
+  "is_oa": true,
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s10479-026-07173-2.pdf",
+  "abstract_openalex": "Abstract Urban expansion in Chile has proceeded so quickly that it has overwhelmed city planners and their efforts to implement sustainable recycling systems. The possibility of recycling in 16 Chilean regions is analyzed in this work, employing a new type of decision-support framework that combines expert opinion (under uncertainty) and objective information analysis through fuzzy logic. First, we elicit stakeholder opinions as simple degrees of belief expressed in natural language using a fuzzy degree modifier to model the vagueness encountered in real-world applications. Then we obtain data-driven weights by assessing the uncertainty and conflicts of each criterion. We then combine such subjective and objective weights using a multisourcing aggregation approach to derive stable regional comparisons. The findings highlight Governance & Policy and Infrastructure & Technology as the two most important dimensions for a successful urban recycling programme. Areas like Biob\u00edo and Valpara\u00edso stand out as star performers, with practical lessons for policy. This framework is designed to balance simplicity and understanding for non-experts, while offering empirical robustness for domain experts. It can also be used in investment and regulatory decisions to enhance Chile's circular economy (CE)."
+ },
+ {
+  "n": 8,
+  "doi": "10.1007/s10479-026-07223-9",
+  "title": "Not just hype: a multi-criteria decision framework for ranking generative AI strategies in sustainable tourism",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 9,
+  "doi": "10.1007/s10479-026-07192-z",
+  "title": "A novel max\u2013min BWM method to boost the digital transformation of resilience supply chains",
+  "abstract_crossref": "Abstract \n                   The increasing frequency of supply chain disruptions has made resilience and digital integration essential. Indeed, firms that succeeded during the COVID-19 pandemic demonstrated advanced digital and supply chain resilience capabilities, enabling them to mitigate adverse consequences. Addressing this forefront topic in operations management, the article introduces an innovative max\u2013min best\u2013worst method to guide digital transformation in global supply chains. This approach aims to maximize resilience capabilities and minimize the impact of supply chain disruptions. The method is examined through an empirical case study of a highly digitalized furniture company. The findings emphasize the importance of redundancy, a robust risk management culture, and adaptability, with raw material delays and cyberattacks being the most significant threats. Moreover, prioritizing the adoption of big data, digital platforms, blockchain, and advanced control systems is crucial for addressing ongoing geopolitical disruptions. Finally, the study discusses both theoretical and managerial implications and suggests avenues for future research.",
+  "cc_license": true,
+  "is_oa": true,
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s10479-026-07192-z.pdf",
+  "abstract_openalex": "Abstract The increasing frequency of supply chain disruptions has made resilience and digital integration essential. Indeed, firms that succeeded during the COVID-19 pandemic demonstrated advanced digital and supply chain resilience capabilities, enabling them to mitigate adverse consequences. Addressing this forefront topic in operations management, the article introduces an innovative max\u2013min best\u2013worst method to guide digital transformation in global supply chains. This approach aims to maximize resilience capabilities and minimize the impact of supply chain disruptions. The method is examined through an empirical case study of a highly digitalized furniture company. The findings emphasize the importance of redundancy, a robust risk management culture, and adaptability, with raw material delays and cyberattacks being the most significant threats. Moreover, prioritizing the adoption of big data, digital platforms, blockchain, and advanced control systems is crucial for addressing ongoing geopolitical disruptions. Finally, the study discusses both theoretical and managerial implications and suggests avenues for future research."
+ },
+ {
+  "n": 10,
+  "doi": "10.1007/s10479-026-07229-3",
+  "title": "Existence and multiplicity of solutions for discrete variable-order fractional boundary value problems with nonlocal constraints",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 11,
+  "doi": "10.1007/s10479-026-07143-8",
+  "title": "A range-adjusted robust DEA model for evaluating multi-efficiencies in retail chain stores",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 12,
+  "doi": "10.1007/s10479-026-07177-y",
+  "title": "Human-centric optimization of multi-row facility layouts: an NSGA-II-based approach balancing noise exposure and space utilization",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 13,
+  "doi": "10.1007/s10479-025-06954-5",
+  "title": "Location and allocation of primary and backup shelters in transboundary disasters",
+  "abstract_crossref": "Abstract \n                   There are records of people being unable to find shelter after a disaster or reaching facilities operating over capacity because of facility failure. Natural hazards do not respect geographical or political boundaries and often surpass the capacity of single jurisdictions operating with limited resources. Coordination between jurisdictions can become a solution, but it has been neglected in the literature. This article is the first to investigate the use of backup facilities as a strategy facilitated by transboundary coordination. It proposes a novel solution incorporating collaboration between multiple jurisdictions to establish a shelter location-allocation approach to protect people affected by disasters considering facility failure. The article presents a stochastic bi-objective formulation for transboundary coordination, incorporating the responsibility, priorities, and resources of each jurisdiction whilst considering the possibility of facility failure during disaster management. The objective of the model is to provide shelter to beneficiaries of all the jurisdictions by pooling resources whilst reducing the travel distance and minimizing the maximum cost for each jurisdiction. The contribution of the article is to introduce the formulation, assess the impact of transboundary coordination, and analyze the value of backup facilities in the service provided to people affected by disasters. The model has been applied to a set of numerical examples and a real case of volcanic eruptions in Mexico. The results show the influence of cross-jurisdictional coordination on the support provided to disaster victims, the value of backup facilities, and the capacity of the model designed to provide relevant alternatives in humanitarian logistics.",
+  "cc_license": true,
+  "is_oa": true,
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s10479-025-06954-5.pdf",
+  "abstract_openalex": "Abstract There are records of people being unable to find shelter after a disaster or reaching facilities operating over capacity because of facility failure. Natural hazards do not respect geographical or political boundaries and often surpass the capacity of single jurisdictions operating with limited resources. Coordination between jurisdictions can become a solution, but it has been neglected in the literature. This article is the first to investigate the use of backup facilities as a strategy facilitated by transboundary coordination. It proposes a novel solution incorporating collaboration between multiple jurisdictions to establish a shelter location-allocation approach to protect people affected by disasters considering facility failure. The article presents a stochastic bi-objective formulation for transboundary coordination, incorporating the responsibility, priorities, and resources of each jurisdiction whilst considering the possibility of facility failure during disaster management. The objective of the model is to provide shelter to beneficiaries of all the jurisdictions by pooling resources whilst reducing the travel distance and minimizing the maximum cost for each jurisdiction. The contribution of the article is to introduce the formulation, assess the impact of transboundary coordination, and analyze the value of backup facilities in the service provided to people affected by disasters. The model has been applied to a set of numerical examples and a real case of volcanic eruptions in Mexico. The results show the influence of cross-jurisdictional coordination on the support provided to disaster victims, the value of backup facilities, and the capacity of the model designed to provide relevant alternatives in humanitarian logistics."
+ },
+ {
+  "n": 14,
+  "doi": "10.1007/s10479-025-06918-9",
+  "title": "Constraint qualifications and optimality criteria for robust conic multiobjective semi-infinite programming problems with vanishing constraints on Riemannian manifolds",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 15,
+  "doi": "10.1007/s10479-025-06912-1",
+  "title": "Inertial proximal point algorithm on Hadamard manifolds: convergence analysis and finite termination",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 16,
+  "doi": "10.1007/s10479-025-06763-w",
+  "title": "Intelligent multi-objective decision support system for efficient resource allocation in cloud computing",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 17,
+  "doi": "10.1007/s10479-024-06413-7",
+  "title": "A decision framework for supplier selection and order allocation for environmentally-sustainable perishable food supply chains",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 18,
+  "doi": "10.1007/s10479-024-06330-9",
+  "title": "Exploiting experts\u2019 asymmetric knowledge structures for consensus reaching: a multi-criteria group decision making model with three-way conflict analysis and opinion dynamics",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ },
+ {
+  "n": 19,
+  "doi": "10.1007/s10479-024-06325-6",
+  "title": "Scheduling technicians and tasks through an adaptive multi-objective biased random-key genetic algorithm",
+  "abstract_crossref": "",
+  "cc_license": false,
+  "is_oa": false,
+  "oa_url": null
+ }
+]

@@ -1,43 +1,36 @@
-# Scan of the 19 papers listed in the collection (as of 2026-11-20)
+# Collection scan, v2 (replaces the title-only version)
 
-**Basis and limits:** this scan uses only the titles, authors, dates and article-type labels on the collection page. I did not read abstracts or full texts, so the topic tags below are inferred from titles and may be wrong. Treat it as a first pass.
+Source: Crossref and OpenAlex metadata, plus the open-access PDFs from link.springer.com. Direct page fetches from this session all redirected to the Springer login, so no paywalled text was read. Access status is OpenAlex's `is_oa` flag as of 2026-11-20.
 
-| # | Short title | Inferred focus |
-|---|---|---|
-| 1 | Water industry, dynamic four-stage network DEA | DEA / efficiency |
-| 2 | Home health care routing, multi-objective stochastic | Multi-objective routing under uncertainty |
-| 3 | Clustering with GP-DEA | Goal programming + DEA |
-| 4 | S&P 500 environmental and financial performance, MCDM | MCDM |
-| 5 | AI for socially responsible investment, multi-objective | AI + multi-objective decisions |
-| 6 | Vaccine supply chain, bi-level fuzzy GP | Goal programming |
-| 7 | Urban recycling in Chile, hybrid fuzzy MCDM | MCDM |
-| 8 | Generative AI strategies in sustainable tourism, multi-criteria | AI + MCDM |
-| 9 | Max-min BWM, supply chain digital transformation | MCDM (BWM) |
-| 10 | Discrete fractional boundary value problems | Mathematical analysis |
-| 11 | Range-adjusted robust DEA, retail | DEA |
-| 12 | Multi-row facility layout, NSGA-II | Metaheuristic MOP |
-| 13 | Primary and backup shelters, transboundary disasters | Location, humanitarian |
-| 14 | Robust conic multiobjective semi-infinite programming on manifolds | MOP theory |
-| 15 | Inertial proximal point algorithm on Hadamard manifolds | Optimisation theory |
-| 16 | Multi-objective decision support for cloud resource allocation | AI-enhanced resource allocation |
-| 17 | Supplier selection and order allocation, perishable food | Decision framework |
-| 18 | Consensus reaching, multi-criteria group decision making | MCGDM |
-| 19 | Technician scheduling, multi-objective BRKGA | Metaheuristic MOP |
+| # | Title | Access | What I actually read |
+|---|---|---|---|
+| 1 | Efficiency and environmental performance evaluation of the water industry: a dynamic four-stage network data envelopment analysis | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 2 | A multi-objective stochastic home health care routing and scheduling problem under demand and service time uncertainty | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 3 | Integrating internal and external attributes in clustering: a goal programming-data envelopment analysis model | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 4 | Environmental and financial performance in the S&P 500: a novel mcdm approach | open access | abstract only (PDF downloaded, body not read) |
+| 5 | Artificial intelligence for socially responsible investment: a multi-objective decision-making framework | open access | abstract + intro, literature review, methodology (first ~400 lines) read |
+| 6 | Equity-oriented design of vaccine supply chains under pandemic conditions through bi-level fuzzy goal programming | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 7 | A hybrid fuzzy MCDM framework for enhancing urban recycling in Chilean regions | open access | abstract only (PDF downloaded, body not read) |
+| 8 | Not just hype: a multi-criteria decision framework for ranking generative AI strategies in sustainable tourism | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 9 | A novel max–min BWM method to boost the digital transformation of resilience supply chains | open access | abstract only (PDF downloaded, body not read) |
+| 10 | Existence and multiplicity of solutions for discrete variable-order fractional boundary value problems with nonlocal constraints | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 11 | A range-adjusted robust DEA model for evaluating multi-efficiencies in retail chain stores | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 12 | Human-centric optimization of multi-row facility layouts: an NSGA-II-based approach balancing noise exposure and space utilization | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 13 | Location and allocation of primary and backup shelters in transboundary disasters | open access | abstract only (PDF downloaded, body not read) |
+| 14 | Constraint qualifications and optimality criteria for robust conic multiobjective semi-infinite programming problems with vanishing constraints on Riemannian manifolds | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 15 | Inertial proximal point algorithm on Hadamard manifolds: convergence analysis and finite termination | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 16 | Intelligent multi-objective decision support system for efficient resource allocation in cloud computing | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 17 | A decision framework for supplier selection and order allocation for environmentally-sustainable perishable food supply chains | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 18 | Exploiting experts’ asymmetric knowledge structures for consensus reaching: a multi-criteria group decision making model with three-way conflict analysis and opinion dynamics | PAYWALLED (closed) | nothing (no abstract in public metadata) |
+| 19 | Scheduling technicians and tasks through an adaptive multi-objective biased random-key genetic algorithm | PAYWALLED (closed) | nothing (no abstract in public metadata) |
 
-## Counts by inferred focus (from titles)
-- DEA-related: 1, 3, 11 (3)
-- MCDM / group decision: 4, 7, 8, 9, 17, 18 (6)
-- Goal programming named in title: 3, 6 (2)
-- Metaheuristics / routing / layout / scheduling: 2, 12, 19 (3)
-- MOP theory and algorithms on manifolds: 14, 15 (2)
-- AI named in title: 5, 8, 16 (3)
-- Other: 10, 13
+## Findings so far (5 papers only)
+- Paper 5 (Truyols-Pont et al.) is the closest to my idea: machine-learning forecasts (LSTM, random forest, GRU, ARIMA, ANN) feed a Black-Litterman model with CVaR and ESG criteria, framed as multi-objective programming, applied to the water-sector stock market. It is finance, not goal programming, and it does not examine how forecast error affects the optimiser's output. Its literature review cites end-to-end Black-Litterman work (Duraj and Yu, 2023) that trains view generation jointly with allocation, so 'predict then optimise' is already present in portfolio work.
+- Papers 4, 7, 9 are MCDM weighting/ranking methods (TOPSIS/VIKOR/COPRAS, fuzzy weights, max-min BWM). Paper 13 is a stochastic bi-objective shelter location model. Abstracts only.
+- The other 14 papers, including both with goal programming in the title (3, 6), are unread.
 
-## Observations and gaps
-- Only two titles name goal programming, and both pair it with other methods (DEA, fuzzy bi-level). Goal programming with learned inputs does not appear in the titles.
-- No title mentions predict-then-optimize, decision-focused learning, or multicriteria deep learning (call topics 6 and 7).
-- AI appears mostly through MCDM or decision-support framing rather than learning inside the optimisation model.
-- Behavioural insights (topic 14) and real-time AI decision frameworks (topic 9) have no visible title match.
-- The collection is still filling; papers keep appearing until the 30 June 2027 deadline, so re-check before submitting.
+## Not yet supported
+The earlier claim that goal programming with learned inputs is missing from the collection is unverified. Papers 3, 6 and 16 are paywalled and could contain it.
 
-These points justify choosing the learning-for-GP angle, but they rest on titles alone. Read the abstracts of 3, 5, 6 and 16 before claiming novelty.
+## Papers I need from you (paywalled)
+1, 2, 3, 6, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19. Please send PDFs or pasted abstracts, starting with 3, 6, 16, 8, 2.
