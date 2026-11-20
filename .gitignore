@@ -221,3 +221,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+__pycache__/
