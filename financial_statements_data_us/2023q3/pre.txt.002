@@ -1,0 +1,219 @@
+38-23-000008	4	29	BS	0	H	LongTermDebtNoncurrent	us-gaap/2023	Long-term borrowings from related party	0
+0001974138-23-000008	4	30	BS	0	H	DefinedBenefitPensionPlanLiabilitiesNoncurrent	us-gaap/2023	Pension and indemnity plan liabilities	0
+0001974138-23-000008	4	31	BS	0	H	AccruedIncomeTaxesNoncurrent	us-gaap/2023	Income tax accruals	0
+0001974138-23-000008	4	32	BS	0	H	OperatingLeaseLiabilityNoncurrent	us-gaap/2023	Operating lease liabilities	0
+0001974138-23-000008	4	33	BS	0	H	DeferredIncomeTaxLiabilitiesNet	us-gaap/2023	Deferred income tax liabilities	0
+0001974138-23-000008	4	34	BS	0	H	OtherLiabilitiesNoncurrent	us-gaap/2023	Other liabilities	0
+0001974138-23-000008	4	35	BS	0	H	Liabilities	us-gaap/2023	Total liabilities	0
+0001974138-23-000008	4	36	BS	0	H	CommitmentsAndContingencies	us-gaap/2023	Commitments and contingencies (Note 8)	0
+0001974138-23-000008	4	38	BS	0	H	NetParentInvestment	0001974138-23-000008	Net parent investment	0
+0001974138-23-000008	4	39	BS	0	H	AccumulatedOtherComprehensiveIncomeLossNetOfTax	us-gaap/2023	Accumulated other comprehensive loss	0
+0001974138-23-000008	4	40	BS	0	H	StockholdersEquity	us-gaap/2023	Total parent's equity	0
+0001974138-23-000008	4	41	BS	0	H	MinorityInterest	us-gaap/2023	Noncontrolling interests in subsidiaries	0
+0001974138-23-000008	4	42	BS	0	H	StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest	us-gaap/2023	Total equity	0
+0001974138-23-000008	4	43	BS	0	H	LiabilitiesAndStockholdersEquity	us-gaap/2023	Total liabilities and equity	0
+0001974138-23-000008	5	1	BS	1	H	AllowanceForDoubtfulAccountsReceivableCurrent	us-gaap/2023	Allowance for credit loss	0
+0001974138-23-000008	6	8	CF	0	H	ProfitLoss	us-gaap/2023	Net income	0
+0001974138-23-000008	6	10	CF	0	H	Depreciation	us-gaap/2023	Depreciation expense	0
+0001974138-23-000008	6	11	CF	0	H	AdjustmentForAmortization	us-gaap/2023	Amortization expense	0
+0001974138-23-000008	6	12	CF	0	H	ShareBasedCompensation	us-gaap/2023	Stock-based compensation expense	0
+0001974138-23-000008	6	13	CF	0	H	DeferredIncomeTaxExpenseBenefit	us-gaap/2023	Deferred income taxes	0
+0001974138-23-000008	6	15	CF	0	H	IncreaseDecreaseInAccountsAndOtherReceivables	us-gaap/2023	Receivables	1
+0001974138-23-000008	6	16	CF	0	H	IncreaseDecreaseInOtherOperatingCapitalNet	us-gaap/2023	Related party receivables and payables	1
+0001974138-23-000008	6	17	CF	0	H	IncreaseDecreaseInInventories	us-gaap/2023	Inventories	1
+0001974138-23-000008	6	18	CF	0	H	IncreaseDecreaseInSettlementAssets	0001974138-23-000008	Settlement assets	1
+0001974138-23-000008	6	19	CF	0	H	IncreaseDecreaseInOtherAccountsPayableAndAccruedLiabilities	us-gaap/2023	Current payables and accrued expenses	0
+0001974138-23-000008	6	20	CF	0	H	IncreaseDecreaseInContractWithCustomerLiability	us-gaap/2023	Contract liabilities	0
+0001974138-23-000008	6	21	CF	0	H	IncreaseDecreaseinEmployeeBenefitPlans	0001974138-23-000008	Accrued compensation and employee benefit plans	0
+0001974138-23-000008	6	22	CF	0	H	IncreaseDecreaseInOtherOperatingCapitalNet	us-gaap/2023	Other assets and liabilities	1
+0001974138-23-000008	6	23	CF	0	H	NetCashProvidedByUsedInOperatingActivities	us-gaap/2023	Net cash provided by operating activities	0
+0001974138-23-000008	6	25	CF	0	H	PaymentsToAcquirePropertyPlantAndEquipment	us-gaap/2023	Expenditures for property, plant and equipment	1
+0001974138-23-000008	6	26	CF	0	H	PaymentsForSoftware	us-gaap/2023	Additions to capitalized software	1
+0001974138-23-000008	6	27	CF	0	H	PaymentsToAcquireBusinessesNetOfCashAcquired	us-gaap/2023	Business acquisitions, net of cash acquired	1
+0001974138-23-000008	6	28	CF	0	H	OriginationOfNotesReceivableFromRelatedParties	us-gaap/2023	Amounts advanced for related party notes receivable	1
+0001974138-23-000008	6	29	CF	0	H	RepaymentOfNotesReceivableFromRelatedParties	us-gaap/2023	Repayments received from related party notes receivable	0
+0001974138-23-000008	6	30	CF	0	H	NetCashProvidedByUsedInInvestingActivities	us-gaap/2023	Net cash used in investing activities	0
+0001974138-23-000008	6	32	CF	0	H	ProceedsFromRelatedPartyDebt	us-gaap/2023	Proceeds from related party borrowings	0
+0001974138-23-000008	6	33	CF	0	H	RepaymentsOfRelatedPartyDebt	us-gaap/2023	Payments on related party borrowings	1
+0001974138-23-000008	6	34	CF	0	H	FinanceLeasePrincipalPayments	us-gaap/2023	Principal payments for finance lease obligations	1
+0001974138-23-000008	6	35	CF	0	H	ProceedsFromPaymentsToParent	0001974138-23-000008	Transfers from (to) Parent	0
+0001974138-23-000008	6	36	CF	0	H	NetCashProvidedByUsedInFinancingActivities	us-gaap/2023	Net cash (used in) provided by financing activities	0
+0001974138-23-000008	6	37	CF	0	H	EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Effect of exchange rate changes on cash, cash equivalents and restricted cash	0
+0001974138-23-000008	6	38	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect	us-gaap/2023	Increase (decrease) in cash, cash equivalents, and restricted cash	0
+0001974138-23-000008	6	39	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Cash, cash equivalents and restricted cash at beginning of period	0
+0001974138-23-000008	6	40	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Cash, cash equivalents and restricted cash at end of period	0
+0001974138-23-000008	7	9	EQ	0	H	StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest	us-gaap/2023	Balance at beginning of period	0
+0001974138-23-000008	7	11	EQ	0	H	ProfitLoss	us-gaap/2023	Net income	0
+0001974138-23-000008	7	12	EQ	0	H	OtherComprehensiveIncomeLossNetOfTax	us-gaap/2023	Other comprehensive income (loss)	0
+0001974138-23-000008	7	13	EQ	0	H	ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest	us-gaap/2023	Total comprehensive income (loss)	0
+0001974138-23-000008	7	14	EQ	0	H	NetTransfersToFromParent	0001974138-23-000008	Net transfers (to) from parent	1
+0001974138-23-000008	7	15	EQ	0	H	StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest	us-gaap/2023	Balance at end of period	0
+0001974793-23-000004	2	10	BS	0	H	InvestmentOwnedAtFairValue	us-gaap/2023	Investment owned, fair value	0
+0001974793-23-000004	2	11	BS	0	H	CashAndCashEquivalentsAtCarryingValue	us-gaap/2023	Cash and cash equivalents	0
+0001974793-23-000004	2	12	BS	0	H	InterestReceivable	us-gaap/2023	Interest receivable	0
+0001974793-23-000004	2	13	BS	0	H	DeferredOfferingCosts	us-gaap/2023	Deferred offering costs	0
+0001974793-23-000004	2	14	BS	0	H	OtherAssets	us-gaap/2023	Other assets	0
+0001974793-23-000004	2	15	BS	0	H	Assets	us-gaap/2023	Total assets	0
+0001974793-23-000004	2	17	BS	0	H	AccountsPayableAndOtherAccruedLiabilities	us-gaap/2023	Accounts payable, accrued expenses and other liabilities	0
+0001974793-23-000004	2	18	BS	0	H	ManagementFeePayable	us-gaap/2023	Base management fee payable	0
+0001974793-23-000004	2	19	BS	0	H	OtherLiabilities	us-gaap/2023	Due to affiliates	0
+0001974793-23-000004	2	20	BS	0	H	InterestPayableCurrentAndNoncurrent	us-gaap/2023	Interest payable	0
+0001974793-23-000004	2	21	BS	0	H	TrusteeFeesPayable	0001974793-23-000004	Director fees payable	0
+0001974793-23-000004	2	22	BS	0	H	LongTermDebt	us-gaap/2023	Secured borrowings	0
+0001974793-23-000004	2	23	BS	0	H	Liabilities	us-gaap/2023	Total liabilities	0
+0001974793-23-000004	2	24	BS	0	H	CommitmentsAndContingencies	us-gaap/2023	Commitments and contingencies (Note 11)	0
+0001974793-23-000004	2	26	BS	0	H	CommonStockValue	us-gaap/2023	Common units (5,115 units issued and outstanding)	0
+0001974793-23-000004	2	27	BS	0	H	RetainedEarningsAccumulatedDeficit	us-gaap/2023	Accumulated earnings	0
+0001974793-23-000004	2	28	BS	0	H	StockholdersEquity	us-gaap/2023	Total net assets (equivalent to $20.06 per common unit) (Note 10)	0
+0001974793-23-000004	2	29	BS	0	H	LiabilitiesAndStockholdersEquity	us-gaap/2023	Total liabilities and net assets	0
+0001974793-23-000004	3	6	BS	1	H	CommonStockParOrStatedValuePerShare	us-gaap/2023	Common stock, par value, (in dollars per share)	0
+0001974793-23-000004	3	7	BS	1	H	NetAssetValuePerShare	us-gaap/2023	Net asset value per common share (dollars per share)	0
+0001974793-23-000004	3	8	BS	1	H	InvestmentOwnedAtCost	us-gaap/2023	Investment owned, at cost	0
+0001974793-23-000004	4	7	IS	0	H	InterestIncomeOperatingPaidInCash	us-gaap/2023	Interest income	0
+0001974793-23-000004	4	8	IS	0	H	FeeIncome	us-gaap/2023	Fee income	0
+0001974793-23-000004	4	9	IS	0	H	GrossInvestmentIncomeOperating	us-gaap/2023	Total investment income	0
+0001974793-23-000004	4	11	IS	0	H	ManagementFeeExpense	us-gaap/2023	Base management fee	0
+0001974793-23-000004	4	12	IS	0	H	ProfessionalFees	us-gaap/2023	Professional fees	0
+0001974793-23-000004	4	13	IS	0	H	TrusteeFees	us-gaap/2023	Directors fees	0
+0001974793-23-000004	4	14	IS	0	H	OrganizationExpense	0001974793-23-000004	Organization expenses	0
+0001974793-23-000004	4	15	IS	0	H	AmortizationOfDeferredCharges	us-gaap/2023	Amortization of deferred offering costs	0
+0001974793-23-000004	4	16	IS	0	H	InterestExpense	us-gaap/2023	Interest expense	0
+0001974793-23-000004	4	17	IS	0	H	GeneralAndAdministrativeExpense	us-gaap/2023	General and administrative expenses	0
+0001974793-23-000004	4	18	IS	0	H	InvestmentIncomeInvestmentExpense	us-gaap/2023	Total expenses	0
+0001974793-23-000004	4	19	IS	0	H	InvestmentCompanyVoluntaryFeeWaived	us-gaap/2023	Management fees waived	1
+0001974793-23-000004	4	20	IS	0	H	InvestmentCompanyExpenseAfterReductionOfFeeWaiverAndReimbursement	us-gaap/2023	Net expenses	0
+0001974793-23-000004	4	21	IS	0	H	NetInvestmentIncome	us-gaap/2023	Net investment income	0
+0001974793-23-000004	4	23	IS	0	H	DebtAndEquitySecuritiesUnrealizedGainLoss	us-gaap/2023	Unrealized appreciation (depreciation):	0
+0001974793-23-000004	4	24	IS	0	H	UnrealizedGainLossInvestmentAndDerivativeOperatingBeforeTax	us-gaap/2023	Net unrealized appreciation (depreciation)	0
+0001974793-23-000004	4	25	IS	0	H	NetIncomeLoss	us-gaap/2023	Net increase (decrease) in net assets resulting from operations	0
+0001974793-23-000004	4	26	IS	0	H	InvestmentCompanyInvestmentIncomeLossPerShare	us-gaap/2023	Net investment income per common share - basic and diluted (dollars per share)	0
+0001974793-23-000004	4	27	IS	0	H	EarningsPerShareDiluted	us-gaap/2023	Earnings (loss) per common share - diluted (dollars per share)	0
+0001974793-23-000004	4	28	IS	0	H	EarningsPerShareBasic	us-gaap/2023	Earnings (loss) per common share - basic (dollars per share)	0
+0001974793-23-000004	4	29	IS	0	H	WeightedAverageNumberOfSharesOutstandingBasic	us-gaap/2023	Weighted average common shares outstanding - basic (shares)	0
+0001974793-23-000004	4	30	IS	0	H	WeightedAverageNumberOfDilutedSharesOutstanding	us-gaap/2023	Weighted average common shares outstanding - diluted (shares)	0
+0001974793-23-000004	5	3	UN	0	H	NetInvestmentIncome	us-gaap/2023	Net investment income	0
+0001974793-23-000004	5	4	UN	0	H	UnrealizedGainLossInvestmentAndDerivativeOperatingBeforeTax	us-gaap/2023	Net unrealized appreciation (depreciation)	0
+0001974793-23-000004	5	5	UN	0	H	NetIncomeLoss	us-gaap/2023	Net increase (decrease) in net assets resulting from operations	0
+0001974793-23-000004	5	7	UN	0	H	StockIssuedDuringPeriodValueNewIssues	us-gaap/2023	Issuance of common units	0
+0001974793-23-000004	5	8	UN	0	H	InvestmentCompanyCapitalShareTransactionsIncreaseDecrease	0001974793-23-000004	Net increase from unit transactions	0
+0001974793-23-000004	5	9	UN	0	H	StockholdersEquityPeriodIncreaseDecrease	us-gaap/2023	Total increase (decrease) in net assets	0
+0001974793-23-000004	5	10	UN	0	H	StockholdersEquity	us-gaap/2023	Net assets	0
+0001974793-23-000004	5	11	UN	0	H	NetAssetValuePerShare	us-gaap/2023	Net asset value per common share (dollars per share)	0
+0001974793-23-000004	5	12	UN	0	H	CommonStockSharesOutstanding	us-gaap/2023	Common shares outstanding at end of period (shares)	0
+0001974793-23-000004	6	2	CF	0	H	NetIncomeLoss	us-gaap/2023	Net increase (decrease) in net assets resulting from operations	0
+0001974793-23-000004	6	4	CF	0	H	DebtAndEquitySecuritiesUnrealizedGainLoss	us-gaap/2023	Net unrealized (appreciation) depreciation	1
+0001974793-23-000004	6	5	CF	0	H	AccretionAmortizationOfDiscountsAndPremiumsInvestments	us-gaap/2023	Accretion of original issue discount on investments	1
+0001974793-23-000004	6	6	CF	0	H	AmortizationOfDeferredCharges	us-gaap/2023	Amortization of deferred offering costs	0
+0001974793-23-000004	6	7	CF	0	H	PaymentsForPurchaseOfInvestmentOperatingActivity	us-gaap/2023	Purchases of investments	1
+0001974793-23-000004	6	8	CF	0	H	ProceedsFromDispositionOfInvestmentOperatingActivity	us-gaap/2023	Proceeds from the sales and repayments of investments	0
+0001974793-23-000004	6	10	CF	0	H	IncreaseDecreaseInInterestAndDividendsReceivable	us-gaap/2023	(Increase) decrease in interest receivable	1
+0001974793-23-000004	6	11	CF	0	H	IncreaseDecreaseInOtherOperatingAssets	us-gaap/2023	(Increase) decrease in other assets	1
+0001974793-23-000004	6	12	CF	0	H	IncreaseDecreaseInAccountsPayableAndAccruedLiabilities	us-gaap/2023	Increase (decrease) in accounts payable, accrued expenses and other liabilities	0
+0001974793-23-000004	6	13	CF	0	H	IncreaseDecreaseInManagementAndIncentiveFeesPayable	us-gaap/2023	Increase (decrease) in base management fee payable	0
+0001974793-23-000004	6	14	CF	0	H	IncreaseDecreaseInDueToAffiliates	us-gaap/2023	Increase (decrease) in due to affiliates	0
+0001974793-23-000004	6	15	CF	0	H	IncreaseDecreaseInInterestPayableNet	us-gaap/2023	Increase (decrease) in interest payable	0
+0001974793-23-000004	6	16	CF	0	H	IncreaseDecreaseInTrusteeFeesPayable	0001974793-23-000004	Increase (decrease) in directors fees payable	0
+0001974793-23-000004	6	17	CF	0	H	NetCashProvidedByUsedInOperatingActivities	us-gaap/2023	Net cash used in operating activities	0
+0001974793-23-000004	6	19	CF	0	H	ProceedsFromIssuanceOfSecuredDebt	us-gaap/2023	Borrowings of secured borrowings	0
+0001974793-23-000004	6	20	CF	0	H	ProceedsFromIssuanceOfCommonStock	us-gaap/2023	Proceeds from issuance of common units	0
+0001974793-23-000004	6	21	CF	0	H	NetCashProvidedByUsedInFinancingActivities	us-gaap/2023	Net cash provided by financing activities	0
+0001974793-23-000004	6	22	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect	us-gaap/2023	Net increase (decrease) in cash and cash equivalents	0
+0001974793-23-000004	6	23	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Cash and cash equivalents, beginning of period	0
+0001974793-23-000004	6	24	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Cash and cash equivalents, end of period	0
+0001974793-23-000004	6	27	CF	0	H	PaymentsOfStockIssuanceCostsNonCash	0001974793-23-000004	Deferred offering costs incurred	0
+0001974793-23-000004	6	29	CF	0	H	CashAndCashEquivalentsAtCarryingValue	us-gaap/2023	Cash and cash equivalents	0
+0001974793-23-000004	7	7	SI	0	H	InvestmentBasisSpreadVariableRate	us-gaap/2023	Investment, basis spread, variable rate	0
+0001974793-23-000004	7	8	SI	0	H	InvestmentInterestRate	us-gaap/2023	Investment interest rate	0
+0001974793-23-000004	7	9	SI	0	H	InvestmentOwnedBalancePrincipalAmount	us-gaap/2023	Investment owned, principal	0
+0001974793-23-000004	7	10	SI	0	H	InvestmentOwnedAtCost	us-gaap/2023	Investment owned, at cost	0
+0001974793-23-000004	7	11	SI	0	H	InvestmentOwnedAtFairValue	us-gaap/2023	Investment owned, fair value	0
+0001974793-23-000004	7	12	SI	0	H	MoneyMarketFundsAtCarryingValue	us-gaap/2023	Money market funds, at carrying value	0
+0001974793-23-000004	7	13	SI	0	H	InvestmentOwnedAtCostAndMoneyMarketFundsAtCarryingValue	0001974793-23-000004	Total investment owned, at cost and money market funds, at carrying value	0
+0001974793-23-000004	7	14	SI	0	H	InvestmentOwnedAtFairValueAndMoneyMarketFundsAtCarryingValue	0001974793-23-000004	Total investment owned, at fair value and money market funds, at carrying value	0
+0001974793-23-000004	7	15	SI	0	H	InvestmentOwnedPercentOfNetAssets	us-gaap/2023	% of Net Assets	0
+0001974793-23-000004	7	16	SI	0	H	MoneyMarketFundsPercentOfNetAssets	0001974793-23-000004	Money market funds, percent of net assets	0
+0001974793-23-000004	7	17	SI	0	H	InvestmentOwnedAndMoneyMarketFundsPercentOfNetAssets	0001974793-23-000004	Total portfolio investments, percent of net assets	0
+0001976719-23-000008	2	8	BS	0	H	InvestmentOwnedAtFairValue	us-gaap/2023	Non-controlled/non-affiliated investments at fair value (cost of $5,242)	0
+0001976719-23-000008	2	9	BS	0	H	CashAndCashEquivalentsAtCarryingValue	us-gaap/2023	Cash and cash equivalents	0
+0001976719-23-000008	2	10	BS	0	H	InterestReceivable	us-gaap/2023	Interest receivable	0
+0001976719-23-000008	2	11	BS	0	H	OtherAssets	us-gaap/2023	Other assets	0
+0001976719-23-000008	2	12	BS	0	H	Assets	us-gaap/2023	Total assets	0
+0001976719-23-000008	2	15	BS	0	H	LineOfCredit	us-gaap/2023	Unsecured Management Company Revolver	0
+0001976719-23-000008	2	16	BS	0	H	DeferredFinanceCostsNet	us-gaap/2023	Deferred financing costs	1
+0001976719-23-000008	2	17	BS	0	H	LongTermDebt	us-gaap/2023	Net borrowings	0
+0001976719-23-000008	2	18	BS	0	H	PayableInvestmentPurchase	us-gaap/2023	Payable for unsettled securities purchased	0
+0001976719-23-000008	2	19	BS	0	H	AccruedOrganizationalAndOfferingExpenses	0001976719-23-000008	Accrued organizational and offering expenses	0
+0001976719-23-000008	2	20	BS	0	H	OtherLiabilities	us-gaap/2023	Payable to affiliates/ Other liabilities	0
+0001976719-23-000008	2	21	BS	0	H	InterestPayableCurrentAndNoncurrent	us-gaap/2023	Interest payable	0
+0001976719-23-000008	2	22	BS	0	H	ManagementFeePayable	us-gaap/2023	Management fee payable	0
+0001976719-23-000008	2	23	BS	0	H	Liabilities	us-gaap/2023	Total liabilities	0
+0001976719-23-000008	2	24	BS	0	H	CommitmentsAndContingencies	us-gaap/2023	Commitments and contingencies (See Note 8)	0
+0001976719-23-000008	2	26	BS	0	H	CommonUnitIssuanceValue	us-gaap/2023	Common units, 1,050,000 units issued and outstanding	0
+0001976719-23-000008	2	27	BS	0	H	RetainedEarningsAccumulatedDeficit	us-gaap/2023	Accumulated overdistributed earnings	0
+0001976719-23-000008	2	28	BS	0	H	MembersEquity	us-gaap/2023	Total members' capital	0
+0001976719-23-000008	2	29	BS	0	H	LiabilitiesAndStockholdersEquity	us-gaap/2023	Total liabilities and members' capital	0
+0001976719-23-000008	2	30	BS	0	H	NetAssetValuePerShare	us-gaap/2023	Members' capital per unit (in dollars per share)	0
+0001976719-23-000008	3	1	BS	1	H	InvestmentOwnedAtCost	us-gaap/2023	Investments, cost	0
+0001976719-23-000008	3	2	BS	1	H	CommonUnitIssued	us-gaap/2023	Common units, units issued (in shares)	0
+0001976719-23-000008	3	3	BS	1	H	CommonUnitOutstanding	us-gaap/2023	Common units, units outstanding (in shares)	0
+0001976719-23-000008	4	2	IS	0	H	InterestIncomeOperating	us-gaap/2023	Interest income	0
+0001976719-23-000008	4	3	IS	0	H	FeeIncome	us-gaap/2023	Fee income	0
+0001976719-23-000008	4	4	IS	0	H	GrossInvestmentIncomeOperating	us-gaap/2023	Total investment income	0
+0001976719-23-000008	4	6	IS	0	H	OrganizationalAndOfferingExpenses	0001976719-23-000008	Organizational and offering expenses	0
+0001976719-23-000008	4	7	IS	0	H	ProfessionalFees	us-gaap/2023	Professional fees	0
+0001976719-23-000008	4	8	IS	0	H	AdministrativeFeesExpense	us-gaap/2023	Administrative expenses	0
+0001976719-23-000008	4	9	IS	0	H	ManagementFeeExpense	us-gaap/2023	Management fee	0
+0001976719-23-000008	4	10	IS	0	H	InterestExpense	us-gaap/2023	Interest and other financing expenses	0
+0001976719-23-000008	4	11	IS	0	H	OtherGeneralAndAdministrativeExpense	us-gaap/2023	Other general and administrative expenses	0
+0001976719-23-000008	4	12	IS	0	H	InvestmentIncomeInvestmentExpense	us-gaap/2023	Total expenses	0
+0001976719-23-000008	4	13	IS	0	H	InvestmentCompanyVoluntaryFeeWaived	us-gaap/2023	Less: expenses waived (See Note 5)	1
+0001976719-23-000008	4	14	IS	0	H	InvestmentCompanyContractualFeeWaived	us-gaap/2023	Less: management fees waived (See Note 5)	1
+0001976719-23-000008	4	15	IS	0	H	InvestmentCompanyExpenseAfterReductionOfFeeWaiverAndReimbursement	us-gaap/2023	Net expenses	0
+0001976719-23-000008	4	16	IS	0	H	InvestmentIncomeOperatingAfterExpenseAndTax	us-gaap/2023	Net investment loss	0
+0001976719-23-000008	4	17	IS	0	H	DebtAndEquitySecuritiesUnrealizedGainLoss	us-gaap/2023	Net change in unrealized appreciation of investments	0
+0001976719-23-000008	4	18	IS	0	H	RealizedAndUnrealizedGainLossInvestmentDerivativeAndForeignCurrencyTransactionOperatingAfterTax	us-gaap/2023	Net realized and unrealized gains	0
+0001976719-23-000008	4	19	IS	0	H	NetIncomeLoss	us-gaap/2023	Net decrease in members' capital resulting from operations	0
+0001976719-23-000008	4	20	IS	0	H	EarningsPerShareBasic	us-gaap/2023	Loss per unit - basic (in dollars per share)	0
+0001976719-23-000008	4	21	IS	0	H	EarningsPerShareDiluted	us-gaap/2023	Loss per unit - diluted (in dollars per share)	0
+0001976719-23-000008	4	22	IS	0	H	WeightedAverageNumberOfSharesOutstandingBasic	us-gaap/2023	Weighted average common units outstanding - basic (in shares)	0
+0001976719-23-000008	4	23	IS	0	H	WeightedAverageNumberOfDilutedSharesOutstanding	us-gaap/2023	Weighted average common units outstanding - diluted (in shares)	0
+0001976719-23-000008	5	3	EQ	0	H	InvestmentIncomeOperatingAfterExpenseAndTax	us-gaap/2023	Net investment loss	0
+0001976719-23-000008	5	4	EQ	0	H	DebtAndEquitySecuritiesUnrealizedGainLoss	us-gaap/2023	Net change in unrealized appreciation of investments	0
+0001976719-23-000008	5	5	EQ	0	H	NetIncomeLoss	us-gaap/2023	Net decrease in members' capital resulting from operations	0
+0001976719-23-000008	5	7	EQ	0	H	InvestmentCompanyCapitalContributions	0001976719-23-000008	Contributions	0
+0001976719-23-000008	5	8	EQ	0	H	InvestmentCompanyCapitalShareTransactionAndDividendDistributionIncreaseDecrease	0001976719-23-000008	Total net increase in members' capital resulting from capital transactions	0
+0001976719-23-000008	5	9	EQ	0	H	MembersEquityPeriodIncreaseDecrease	0001976719-23-000008	Net increase in members' capital	0
+0001976719-23-000008	5	10	EQ	0	H	MembersEquity	us-gaap/2023	Members' capital at the beginning of the period	0
+0001976719-23-000008	5	11	EQ	0	H	MembersEquity	us-gaap/2023	Members' capital at the end of the period	0
+0001976719-23-000008	5	13	EQ	0	H	StockIssuedDuringPeriodSharesNewIssues	us-gaap/2023	Units issued (in shares)	0
+0001976719-23-000008	6	2	CF	0	H	NetIncomeLoss	us-gaap/2023	Net decrease in members' capital resulting from operations	0
+0001976719-23-000008	6	4	CF	0	H	DebtAndEquitySecuritiesUnrealizedGainLoss	us-gaap/2023	Net change in unrealized appreciation of investments	1
+0001976719-23-000008	6	5	CF	0	H	AccretionAmortizationOfDiscountsAndPremiumsInvestments	us-gaap/2023	Amortization of purchase discount	1
+0001976719-23-000008	6	6	CF	0	H	AmortizationOfDeferredOfferingCosts	0001976719-23-000008	Amortization of deferred offering costs	0
+0001976719-23-000008	6	8	CF	0	H	PaymentsForPurchaseOfInvestmentOperatingActivity	us-gaap/2023	Purchase of investments and delayed draw facilities	1
+0001976719-23-000008	6	9	CF	0	H	ProceedsFromDispositionOfInvestmentOperatingActivity	us-gaap/2023	Proceeds from sales and paydowns of investments	0
+0001976719-23-000008	6	10	CF	0	H	IncreaseDecreaseInInterestAndDividendsReceivable	us-gaap/2023	Interest and dividend receivable	1
+0001976719-23-000008	6	11	CF	0	H	IncreaseDecreaseInOtherOperatingAssets	us-gaap/2023	Other assets	1
+0001976719-23-000008	6	13	CF	0	H	IncreaseDecreaseInPayableForInvestmentPurchased	us-gaap/2023	Payable for unsettled securities purchased	0
+0001976719-23-000008	6	14	CF	0	H	IncreaseDecreaseInInterestPayableNet	us-gaap/2023	Interest payable	0
+0001976719-23-000008	6	15	CF	0	H	IncreaseDecreaseInManagementFeePayable	us-gaap/2023	Management fee payable	0
+0001976719-23-000008	6	16	CF	0	H	IncreaseDecreaseInAccruedOrganizationalAndOfferingExpenses	0001976719-23-000008	Accrued organizational and offering expenses	0
+0001976719-23-000008	6	17	CF	0	H	IncreaseDecreaseInDueToAffiliates	us-gaap/2023	Payable to affiliate	0
+0001976719-23-000008	6	18	CF	0	H	IncreaseDecreaseInOtherOperatingLiabilities	us-gaap/2023	Other liabilities	0
+0001976719-23-000008	6	19	CF	0	H	NetCashProvidedByUsedInOperatingActivities	us-gaap/2023	Net cash flows used in operating activities	0
+0001976719-23-000008	6	21	CF	0	H	ProceedsFromIssuanceOfCommonUnits	0001976719-23-000008	Net proceeds from issuance of common units	0
+0001976719-23-000008	6	22	CF	0	H	ProceedsFromLongTermLinesOfCredit	us-gaap/2023	Proceeds from lines of credit	0
+0001976719-23-000008	6	23	CF	0	H	NetCashProvidedByUsedInFinancingActivities	us-gaap/2023	Net cash flows provided by financing activities	0
+0001976719-23-000008	6	24	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect	us-gaap/2023	Net increase in cash and cash equivalents	0
+0001976719-23-000008	6	25	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Cash and cash equivalents at the beginning of the period	0
+0001976719-23-000008	6	26	CF	0	H	CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents	us-gaap/2023	Cash and cash equivalents at the end of the period	0
+0001976719-23-000008	6	29	CF	0	H	StockIssuanceCostsIncurredButNotYetPaid	0001976719-23-000008	Accrual for deferred offering costs	0
+0001976719-23-000008	6	30	CF	0	H	DebtIssuanceCostsIncurredButNotYetPaid	0001976719-23-000008	Accrual for deferred credit facility costs	0
+0001976719-23-000008	7	28	SI	0	H	InvestmentBasisSpreadVariableRate	us-gaap/2023	Spread	0
+0001976719-23-000008	7	29	SI	0	H	InvestmentInterestRatePaidInKind	us-gaap/2023	PIK	0
+0001976719-23-000008	7	30	SI	0	H	InvestmentInterestRate	us-gaap/2023	Interest Rate	0
+0001976719-23-000008	7	31	SI	0	H	InvestmentOwnedBalancePrincipalAmount	us-gaap/2023	Principal Amount, Par Value	0
+0001976719-23-000008	7	32	SI	0	H	InvestmentOwnedAtCost	us-gaap/2023	Cost	0
+0001976719-23-000008	7	33	SI	0	H	InvestmentOwnedAtFairValue	us-gaap/2023	Fair Value	0
+0001976719-23-000008	7	34	SI	0	H	InvestmentOwnedPercentOfNetAssets	us-gaap/2023	Percent of Net Assets	0
+0001976719-23-000008	7	35	SI	0	H	ConcentrationRiskPercentage1	us-gaap/2023	Percent of Total Investments at Fair Value	0
