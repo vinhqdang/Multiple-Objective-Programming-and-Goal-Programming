@@ -1,0 +1,9 @@
+country,stated,n,status,window,tau_pi,b_pi,loss,mean_infl
+IL,2.0,47,included,2003Q1-2019Q4,3.49,1.68,0.325,1.77
+NZ,2.0,41,included,2002Q3-2012Q3,1.66,0.97,0.171,2.54
+CZ,2.0,20,excluded (<30 quarters),,,,,
+CO,3.0,40,included,2010Q1-2019Q4,3.02,1.1,0.211,3.79
+HU,3.0,33,included,2007Q1-2015Q1,4.97,2.4,0.26,3.33
+TR,5.0,32,included,2012Q1-2019Q4,6.14,0.0,1.18,10.7
+KR,3.0,12,excluded (<30 quarters),,,,,
+IS,2.5,4,excluded (<30 quarters),,,,,
