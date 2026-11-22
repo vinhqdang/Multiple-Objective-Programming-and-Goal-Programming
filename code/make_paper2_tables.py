@@ -20,3 +20,18 @@ if os.path.exists("results/bootstrap_cb_summary.csv"):
         L.append(f"{r.country} & {r.stated:.1f} & {r.lo:.2f} & {r.med:.2f} & {r.hi:.2f} & {'yes' if r.covers_stated else 'no'}\\\\")
     L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_cb_bootstrap.tex", "w").write("\n".join(L))
 print("ok")
+
+a = pd.read_csv("results/applications_gp_aid_defence_firms.csv")
+def fmt(v): return "--" if pd.isna(v) else f"{v:.2f}"
+aid = a[a.domain == "ODA % GNI"].sort_values("tau", ascending=False)
+L = [r"\begin{tabular}{lrrrrrr}\toprule", r"Donor & $n$ & $\hat\tau$ & Band & Step down & Step up & Mean level\\\midrule"]
+for _, r in aid.iterrows():
+    L.append(f"{r.unit} & {int(r.n)} & {r.tau:.2f} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid.tex", "w").write("\n".join(L))
+oth = a[a.domain != "ODA % GNI"]
+L = [r"\begin{tabular}{llrrrrr}\toprule", r"Domain & Unit & $n$ & Band & Step down & Step up & Mean level\\\midrule"]
+for _, r in oth.iterrows():
+    dom = "Defence, NATO def." if r.domain.startswith("defence") else "Book leverage"
+    unit = r.unit.replace("NATO def., ", "")
+    L.append(f"{dom} & {unit} & {int(r.n)} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_def_firms.tex", "w").write("\n".join(L))
