@@ -26,20 +26,21 @@ def forecast_series(cc, var, quarters):
         if len(row): out[q] = row.value.iloc[0]
     return pd.Series(out)
 
-rows = []
-for cc, var, s, e, tgt in SPEC:
-    q = build(cc); q = q[(q.index >= pd.Period(s, "Q")) & (q.index <= pd.Period(e, "Q")) & (q.rate_start > ZLB)]
-    q["fc"] = forecast_series(cc, var, q.index); q = q.dropna(subset=["fc"])
-    q["x_gap"] = q.growth - q.growth.mean(); X = q[["fc", "x_gap"]].values; D = q.D.values
-    best = None
-    for seed in range(3):
-        h = migp.fit_hybrid(X, D, seed=seed)
-        if best is None or h["loss"] < best["loss"]: best = h
-    A = np.column_stack([np.ones(len(D)), X]); a, phi, gam = np.linalg.lstsq(A, D, rcond=None)[0]
-    rows.append(dict(country=cc, stated=tgt, n=len(D), tau_pi=round(best["tau"][0], 2), b_pi=round(best["b"][0], 2),
-                     alpha_pi=round(best["alpha"][0], 2), loss=round(best["loss"], 3), mean_forecast=round(X[:, 0].mean(), 2),
-                     mean_realised=round(q.x_pi.mean(), 2), taylor_tau=round(-a / phi, 2) if phi > 0 else np.nan))
-    print(rows[-1], flush=True)
-d = pd.DataFrame(rows); d.to_csv("results/real_cb_forecast_hybrid.csv", index=False)
-for m in ["tau_pi", "mean_forecast", "mean_realised", "taylor_tau"]:
-    v = d[m]; ok = v.notna(); print(f"{m}: MAE {np.abs(v[ok]-d.stated[ok]).mean():.2f} (n={ok.sum()})")
+if __name__ == "__main__":
+    rows = []
+    for cc, var, s, e, tgt in SPEC:
+        q = build(cc); q = q[(q.index >= pd.Period(s, "Q")) & (q.index <= pd.Period(e, "Q")) & (q.rate_start > ZLB)]
+        q["fc"] = forecast_series(cc, var, q.index); q = q.dropna(subset=["fc"])
+        q["x_gap"] = q.growth - q.growth.mean(); X = q[["fc", "x_gap"]].values; D = q.D.values
+        best = None
+        for seed in range(3):
+            h = migp.fit_hybrid(X, D, seed=seed)
+            if best is None or h["loss"] < best["loss"]: best = h
+        A = np.column_stack([np.ones(len(D)), X]); a, phi, gam = np.linalg.lstsq(A, D, rcond=None)[0]
+        rows.append(dict(country=cc, stated=tgt, n=len(D), tau_pi=round(best["tau"][0], 2), b_pi=round(best["b"][0], 2),
+                         alpha_pi=round(best["alpha"][0], 2), loss=round(best["loss"], 3), mean_forecast=round(X[:, 0].mean(), 2),
+                         mean_realised=round(q.x_pi.mean(), 2), taylor_tau=round(-a / phi, 2) if phi > 0 else np.nan))
+        print(rows[-1], flush=True)
+    d = pd.DataFrame(rows); d.to_csv("results/real_cb_forecast_hybrid.csv", index=False)
+    for m in ["tau_pi", "mean_forecast", "mean_realised", "taylor_tau"]:
+        v = d[m]; ok = v.notna(); print(f"{m}: MAE {np.abs(v[ok]-d.stated[ok]).mean():.2f} (n={ok.sum()})")
