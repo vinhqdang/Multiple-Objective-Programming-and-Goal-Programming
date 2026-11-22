@@ -94,3 +94,12 @@ K = 2 (inflation 4 quarters ahead, realised; GDP growth gap), two restarts per b
 - Realised-inflation input, 9 banks: MAE of implied target vs stated target 0.45 pp (mean-inflation benchmark 0.47 pp). In the banks whose average inflation was more than 0.5 pp from target (Mexico, India, Sweden, Norway), the implied target was closer to the stated target than average inflation in every case (see table printed by the analysis below).
 - Official-forecast input (GB, CA, AU): MAE 1.67 pp, driven by a degenerate fit for GB (tau 6.65, both weights 0); not informative.
 Caveats: this specification was introduced after the earlier specifications failed, so it is exploratory and must be confirmed on banks not used so far, with the specification fixed in advance. Several weights sit at their bounds (0 or 5), and the search is not certified optimal; restarts and bootstrap intervals are needed.
+
+## 11. Multistart algorithm for noisy data (migp_quad.fit_ms)
+Because the decision loss of the gradualism model is continuous in the parameters (the optimum of a strictly convex F_t moves continuously), a derivative-free local method can be used: 800 random starts of Powell's method run in parallel on 4 cores, the best five are polished by the LP with states fixed and by LNS over states. Synthetic K = 2, T = 80:
+| noise | multistart loss | after polishing | loss of true parameters | tau_hat (true 2.5, 0) | b_hat (0.5, 1) | alpha_hat (0.8, 0.4) | omega+ (0.5, 0.25) | omega- (0.5, 0.3) | time |
+|---|---|---|---|---|---|---|---|---|---|
+| 0.05 | 0.0626 | 0.0517 | 0.0552 | 2.47, 0.14 | 0.46, 0.76 | 0.74, 0.29 | 0.60, 0.32 | 0.55, 0.31 | 267 s |
+| 0.10 | 0.1205 | 0.1107 | 0.1056 | 2.41, -0.02 | 0.43, 1.12 | 0.78, 0.25 | 0.67, 0.28 | 0.52, 1.17 | 925 s |
+At noise 0.05 the fitted loss is below that of the true parameters (the estimator fits slightly better than the truth, as expected in finite samples), so the search reached the global region; inflation target, band and transmission are recovered closely and the weights approximately. Differential evolution alone stopped at 0.093 on the same data.
+Note: earlier runs of real_cb_hybrid.py and real_cb_quad.py imported real_cb_migp_k2.py, whose top-level code re-ran the old MILP experiment on each import; this cost time but did not change the committed results files (checked with git status). Entry points are now guarded.
