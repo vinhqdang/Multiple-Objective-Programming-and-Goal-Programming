@@ -1,0 +1,9 @@
+domain,period,n,up,down,T_hat,set_T,mean_level,stated
+"defence, COFOG GF02 % GDP (21 EU NATO members)",1996-2013 (before Wales),345,82,127,1.22,"[1.16, 1.36]",1.37,none
+"defence, COFOG GF02 % GDP (21 EU NATO members)",2015-2021 (after Wales 2014),140,52,30,1.2,"[1.06, 1.26]",1.19,2.0 (NATO def.)
+"defence, COFOG GF02 % GDP (21 EU NATO members)",2022-2024 (after 2022 invasion),60,37,7,1.5,"[1.34, 1.60]",1.37,2.0 floor (NATO def.)
+"defence, NATO definition % GDP (allies)",2015-2021,217,106,62,1.42,"[1.28, 1.56]",1.48,2.0
+"defence, NATO definition % GDP (allies)",2022-2025,123,91,19,2.2,"[2.02, 2.38]",1.85,2.0 floor; 3.5 core by 2035
+ODA % GNI (DAC donors),1971-2004,883,388,346,0.31,"[0.24, 0.39]",0.37,0.7 (UN)
+ODA % GNI (DAC donors),2006-2015 (EU 2005 commitments),447,171,155,0.22,"[0.12, 0.33]",0.32,0.7 by 2015 (EU-15); 0.33 (new members)
+ODA % GNI (DAC donors),2016-2024,403,161,148,0.27,"[0.17, 0.35]",0.35,"0.7 (UN, SDG 17.2)"

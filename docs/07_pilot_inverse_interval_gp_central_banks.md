@@ -25,3 +25,19 @@ T_hat tracks the stated targets across countries (correlation above 0.9), but a 
 2. Use the central banks' own published inflation forecasts instead of realised inflation.
 3. Add the activity goal (output gap) and asymmetric weights, so supply-shock periods that the bank "looked through" do not pull T towards realised inflation.
 4. Evaluate on windows where mean inflation and the stated target diverge, which is where the method must beat the benchmark.
+
+# Same pilot on budget shares (code/inverse_interval_gp_budgets.py; results/inverse_interval_gp_budgets.csv)
+Direction of year-on-year changes in a share (increase / hold / decrease), pooled across countries, one common (T, b) per period.
+
+| domain | period | revealed T (set) | mean level | stated target |
+|---|---|---|---|---|
+| defence, NATO definition, % GDP | 2015-2021 | 1.42 [1.28, 1.56] | 1.48 | 2.0 |
+| defence, NATO definition, % GDP | 2022-2025 | 2.20 [2.02, 2.38] | 1.85 | 2.0 floor |
+| defence, COFOG GF02, % GDP (21 EU NATO members) | 1996-2013 | 1.22 [1.16, 1.36] | 1.37 | none |
+| defence, COFOG GF02 | 2015-2021 | 1.20 [1.06, 1.26] | 1.19 | 2.0 (NATO definition) |
+| defence, COFOG GF02 | 2022-2024 | 1.50 [1.34, 1.60] | 1.37 | 2.0 floor (NATO definition) |
+| ODA % GNI (DAC donors) | 1971-2004 | 0.31 [0.24, 0.39] | 0.37 | 0.7 |
+| ODA % GNI | 2006-2015 | 0.22 [0.12, 0.33] | 0.32 | 0.7 (EU-15 by 2015) |
+| ODA % GNI | 2016-2024 | 0.27 [0.17, 0.35] | 0.35 | 0.7 |
+
+Observations: (1) after 2022 the revealed defence target (NATO definition) moves to about 2.2%, above the mean level and close to the stated 2% floor; this is the one case where the estimate departs from the mean in the direction of the stated target. (2) In 2015-2021 the revealed target (1.4%) sits well below the stated 2%. (3) For aid, the revealed target (0.2-0.3% of GNI) is far below the 0.7% commitment in every period. Caveats: pooling across heterogeneous countries; the GDP or GNI denominator moves shares without any decision; COFOG and NATO defence definitions differ; NATO 2025 values are estimates; the ODA series changes measurement basis in 2018 (the 2018 change is dropped).
