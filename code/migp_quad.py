@@ -77,3 +77,54 @@ def fit_hybrid(X, D_obs, de_iter=3000, de_pop=80, lns_iters=20, sub_size=12, sub
             best = _res(p2, V2); fix = {k: np.round(V2[k].value) for k in ["a", "s", "l", "z"]}
     best["de_loss"] = de.fun
     return best
+
+# ---------------------------------------------------------------------------
+# Multistart local search (parallel Powell on the continuous decision loss) + exact LP/LNS polishing.
+_G = {}
+def _ms_init(X, D_obs, lo, hi):
+    _G.update(X=X, D=D_obs, lo=lo, hi=hi)
+
+def _ms_loss(v):
+    lo, hi, K = _G["lo"], _G["hi"], _G["X"].shape[1]
+    v = np.clip(v, lo, hi)
+    return np.abs(_G["D"] - forward_batch(_G["X"], v[:K], v[K:2*K], v[2*K:3*K], v[3*K:4*K], v[4*K:])).mean()
+
+def _ms_run(seed):
+    from scipy.optimize import minimize
+    lo, hi = _G["lo"], _G["hi"]
+    v0 = lo + np.random.default_rng(seed).random(len(lo)) * (hi - lo)
+    r = minimize(_ms_loss, v0, method="Powell", bounds=list(zip(lo, hi)), options={"maxiter": 20000, "xtol": 1e-6, "ftol": 1e-9})
+    return r.fun, np.clip(r.x, lo, hi)
+
+def polish(X, D_obs, v, lns_iters=15, sub_size=12, sub_time=10, seed=0, **kw):
+    T, K = X.shape
+    th = (v[:K], v[K:2*K], v[2*K:3*K], v[3*K:4*K], v[4*K:])
+    D0 = forward_batch(X, *th); fix = states_from(X, D0, th[0], th[1], th[2])
+    best = dict(loss=np.abs(D_obs - D0).mean(), alpha=th[0], tau=th[1], b=th[2], omega_p=th[3], omega_m=th[4], D=D0)
+    p, V = _build(X, D_obs, fix=fix, free=np.zeros(T, bool), **kw); p.solve(solver=cp.HIGHS)
+    if V["al"].value is not None and p.value < best["loss"]:
+        best = _res(p, V); fix = {k: np.round(V[k].value) for k in ["a", "s", "l", "z"]}
+    rng = np.random.default_rng(seed)
+    for it in range(lns_iters):
+        res = np.abs(D_obs - best["D"]); k1 = sub_size // 2
+        worst = np.argsort(-res)[:k1]; rand = rng.choice(np.setdiff1d(np.arange(T), worst), sub_size - k1, replace=False)
+        free = np.zeros(T, bool); free[np.r_[worst, rand]] = True
+        p2, V2 = _build(X, D_obs, fix=fix, free=free, **kw); p2.solve(solver=cp.HIGHS, time_limit=sub_time)
+        if p2.value is not None and V2["al"].value is not None and p2.value < best["loss"] - 1e-9:
+            best = _res(p2, V2); fix = {k: np.round(V2[k].value) for k in ["a", "s", "l", "z"]}
+    return best
+
+def fit_ms(X, D_obs, n_starts=800, top=5, procs=4, seed=0, lo=None, hi=None, **kw):
+    from multiprocessing import Pool
+    T, K = X.shape
+    lo = np.array([0.05]*K + [-3.0]*K + [0.0]*K + [0.0]*(2*K)) if lo is None else lo
+    hi = np.array([3.0]*K + [10.0]*K + [4.0]*K + [5.0]*(2*K)) if hi is None else hi
+    with Pool(procs, initializer=_ms_init, initargs=(X, D_obs, lo, hi)) as pool:
+        res = pool.map(_ms_run, range(seed * 100000, seed * 100000 + n_starts))
+    res.sort(key=lambda z: z[0])
+    best = None
+    for f0, v in res[:top]:
+        h = polish(X, D_obs, v, **kw)
+        if best is None or h["loss"] < best["loss"]: best = h
+    best["ms_loss"] = res[0][0]
+    return best
