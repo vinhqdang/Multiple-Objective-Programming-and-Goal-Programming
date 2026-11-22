@@ -70,3 +70,12 @@ With K = 2 (inflation and activity, T = 80, noiseless), the plain estimator fitt
 | difference Taylor rule, implied target -a/phi | 1.57 pp (8 banks) | -0.12 | inflation coefficient near zero or negative |
 
 The estimator beats the difference Taylor rule but not the mean-inflation benchmark. For credible inflation targeters, average inflation is close to the target by construction, so this benchmark is hard to beat; the informative cases are banks whose inflation averaged away from target (Sweden, Mexico, India), where results are mixed (India closer to target than the mean; Sweden and Mexico not). Two limitations are clear: the MILP does not reach proven optimality in 300 s for T = 60-100 with K = 2, and realised future inflation is a poor proxy for the forecasts banks act on.
+
+## 8. Algorithms for the estimator (code/migp.py)
+Synthetic benchmark: K = 2, T = 80, Laplace decision noise 0.1; the true parameters give loss 0.089.
+| algorithm | loss | time |
+|---|---|---|
+| full MI-IGP MILP (HiGHS, 120 s limit) | 0.205 | 120 s |
+| LNS: incumbent from 20 s MILP, then 25 sub-MILPs freeing 12 periods each (largest residuals + random) | 0.189 | 29 s |
+| hybrid: differential evolution in parameter space with breakpoint enumeration (O(TK) per evaluation, Proposition 1), LP polishing with states fixed, then LNS | 0.101 | 32 s |
+The full MILP stalls because big-M relaxations are weak; the hybrid exploits the fact that, for fixed parameters, each period's optimal decision is found by enumerating at most 2K + 1 breakpoints, and that, for fixed states, the estimation problem is a linear program. The hybrid recovered the activity goal well (tau 0.05 vs 0, b 0.9 vs 1, alpha 0.40 vs 0.40) and the inflation target approximately (2.67 vs 2.5), with the inflation band and transmission less well determined (b 0.22 vs 0.5, alpha 0.43 vs 0.8). It is still above the loss of the true parameters, so restarts are used on real data. A certified lower bound from the full MILP is not yet informative for T near 100.
