@@ -1,0 +1,22 @@
+# Literature synthesis (2026-11-22)
+
+Four clusters were read by full text where available (about 50 papers; per-paper notes with read scope in 01-04). Key arXiv IDs, NBER numbers and DOIs below were re-checked against arxiv.org, nber.org and Crossref. Coverage is not systematic: OpenAlex quota ran out during the search, and several publisher PDFs were blocked.
+
+## What is known
+1. **Quadratic regret of plug-in solutions is known for smooth problems.** Tan & Frazier (arXiv 2210.15576, Thm 3.4) give a finite-sample bound quadratic in the parameter error for smooth, strongly convex problems with interior optima; Elmachtoub, Lam, Zhang & Zhao (arXiv 2304.06833) give the asymptotic quadratic form. The draft bound in docs/06 uses the same mechanism (strong convexity), which is also the mechanism behind the merit-function bounds of Tanabe, Fukuda & Yamashita for multiobjective proximal gradient methods (notes 03). What docs/06 adds is narrower: nonsmooth goal deviations under a sign (margin) condition, a weak-Pareto gap instead of scalar regret, and weights that depend on the learned solution. Modest.
+2. **With linear or piecewise-linear objectives, regret is first order in the error**, and faster rates need a margin condition averaged over contexts (Hu, Kallus & Mao, arXiv 2011.03030, Assumption 2 and Thm 8). Goal-programming kinks are exactly this degeneracy; condition H2 in docs/06 is a deterministic analogue of the margin.
+3. **Quadratic behaviour needs a well-specified model**; misspecification adds a regret term that does not vanish (Elmachtoub, Lam, Lan & Zhang, arXiv 2503.00626).
+4. **Multiobjective decision-focused learning is nascent and empirical**: Li et al. 2024 (arXiv 2406.00779), Dinh et al. 2024 (arXiv 2402.07772), Dhakal & Lachner 2026 (arXiv 2611.23076). The Mandi et al. survey (JAIR 2024) states that guarantees beyond linear problems are missing. The closest work to ours is Bae, Park, Jeon & Kim, "A decision-focused learning framework for goal-based investing", Quantitative Finance (DOI 10.1080/14697688.2025.2596917), read at abstract level only.
+5. **Stability of Pareto sets under perturbation** is known qualitatively (semicontinuity) and to first order (Lipschitz moduli; Tanino; Canovas, Lopez, Mordukhovich & Parra 2020), mostly for constraint perturbations. No paper read bounds the weak-Pareto gap of a point computed from a persistently perturbed objective. Inexact multiobjective proximal methods assume summable, vanishing errors on an exactly known objective.
+6. **Inverse multiobjective optimization** (Dong & Zeng, arXiv 1808.00935 and successors) learns weights or parameters from observed decisions, with consistency and regret results.
+7. **Goal programming with uncertainty** (stochastic, fuzzy, robust GP) takes parameter distributions or sets as given; learned-model uncertainty is not addressed in the texts read. One paper uses GP to combine learned predictors (Repetto, La Torre & Tariq, arXiv 2111.13834; La Torre is a guest editor of the target special issue).
+8. **Education spending evidence.** Credible quasi-experimental estimates: about +0.035 SD in test scores and +1.9 pp in graduation per $1,000 per pupil sustained (Jackson & Mackevicius, NBER w28517), larger in low-income districts; naive within-district panel OLS is biased towards zero (Jackson, Wigger & Xiong, NBER w24203). Little evidence of diminishing returns at current levels and large heterogeneity across studies, so a single Cobb-Douglas elasticity is hard to defend. OR allocation models in education (Hassan 2013, 2017; Sihombing 2023) use judgemental coefficients.
+
+## Gaps that look real (to be confirmed before any novelty claim)
+- G1. Statistical guarantees for goal-programming plans built from estimated coefficients, including the kink (first-order) regime, e.g. a margin-type condition on how often goals sit near their targets.
+- G2. Decision-focused training for goal-programming objectives with calibration guarantees (check Bae et al. first).
+- G3. Propagating credible causal effect estimates and their heterogeneity into a goal-programming allocation, with misspecification in view.
+- G4. Inferring implied goal priorities of real budget allocations through inverse goal programming.
+
+## Papers the user should download
+Bae et al. 2026 (10.1080/14697688.2025.2596917); Page et al. 2024 JEL (10.1257/jel.20231553); Lu & Tsai 2024 generalized robust GP (EJOR; see notes 02); Upadhyay, Poddar & Chuong 2026 inexact inertial PPA (10.1007/s11075-026-02423-7).
