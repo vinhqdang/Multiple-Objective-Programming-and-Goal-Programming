@@ -60,3 +60,13 @@ Strict optimality implies optimality, so the stationarity equality is no longer 
 The plain estimator on the same data gave tau_hat = 2.64 and 2.07 with b_hat near 0 at noise 0.05 and 0.15 (flat-optimum overfitting). Weights are returned at the boundary of their identified set (about 1.05 = 1 + eps), as Proposition 4 predicts.
 
 With K = 2 (inflation and activity, T = 80, noiseless), the plain estimator fitted the decisions exactly but recovered only the upper edge of the inflation band (tau + b = 3.0), because no period had the lower inflation edge binding: an instance of Proposition 3's coverage condition. Aspiration levels must therefore be reported as identified sets when an edge never binds.
+
+## 7. First real-data results (central banks, quarterly; results/real_cb_migp.csv, results/real_cb_migp_k2.csv)
+| specification | MAE vs stated target | corr with stated | note |
+|---|---|---|---|
+| MI-IGP, K=1, current CPI inflation | 0.94 pp | 0.76 | alpha at its lower bound and very wide bands in 4 of 9 banks |
+| MI-IGP, K=2, inflation 4 quarters ahead + GDP growth gap | 0.72 pp | 0.75 | all 9 runs stopped at the 300 s limit (not proven optimal); bands 1.7-5.4 pp |
+| mean inflation over the window | 0.47-0.48 pp | 0.92 | benchmark |
+| difference Taylor rule, implied target -a/phi | 1.57 pp (8 banks) | -0.12 | inflation coefficient near zero or negative |
+
+The estimator beats the difference Taylor rule but not the mean-inflation benchmark. For credible inflation targeters, average inflation is close to the target by construction, so this benchmark is hard to beat; the informative cases are banks whose inflation averaged away from target (Sweden, Mexico, India), where results are mixed (India closer to target than the mean; Sweden and Mexico not). Two limitations are clear: the MILP does not reach proven optimality in 300 s for T = 60-100 with K = 2, and realised future inflation is a poor proxy for the forecasts banks act on.
