@@ -1,0 +1,119 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,natbib,hyperref,setspace}
+\setstretch{1.1}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+\newcommand{\pend}[1]{\textbf{[#1]}}
+
+\title{Revealed Aspiration Levels: Inverse Interval Goal Programming for Recovering the Targets and Priorities Behind Public Decisions}
+\author{Quang-Vinh Dang\\British University Vietnam, Hung Yen, Vietnam\\\texttt{vinh.dq4@buv.edu.vn}\quad ORCID: 0000-0002-3877-8024}
+\date{Draft, \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Governments, central banks and firms announce targets, but what they pursue can only be read from what they do. We formulate the recovery of aspiration levels and goal priorities from observed sequential decisions as an inverse interval goal-programming problem. The forward model is an interval goal program with asymmetric deviation weights and an adjustment cost; a change of variables makes all optimality conditions linear in the unknowns, so the transmission from decisions to goal variables need not be known in advance. We show that optimal decisions lie at breakpoints, that only effective weights are identifiable, that aspiration levels are revealed exactly when a decision stops at a band edge, and that the type of adjustment cost decides what can be learned: with a linear cost, priority weights are only set-identified, whereas with a quadratic cost (gradualism) weights and aspiration levels are both point-identified. We give an exact mixed-integer linear estimator with a strict-optimality margin and a scalable algorithm that combines parallel multistart local search with exact linear-programming and large-neighbourhood polishing. We validate the method on central banks, whose inflation targets are public: in a pre-registered test on banks not used during development, the implied target was closer to the stated target than average inflation in all three banks whose inflation had deviated from target, and across exploratory and confirmatory samples in all seven such cases; when inflation was on target, average inflation was the better estimator. \pend{Applications to defence budgets, aid and corporate leverage: results pending.}
+\end{abstract}
+
+\noindent\textbf{Keywords:} goal programming; inverse optimization; aspiration levels; revealed preferences; mixed-integer programming; central banks; public budgets
+
+\section{Introduction}
+Goal programming (GP) asks a decision maker for aspiration levels and priorities and returns a decision \citep{charnes1961,tamiz1998}. Many public and corporate actors announce aspiration levels (an inflation target, a defence spending guideline, an aid commitment, a leverage policy) and then decide repeatedly. The inverse question is natural and practically important: given the observed decisions, which aspiration levels and priorities would make them optimal? Comparing revealed with stated aspirations measures credibility; tracking them over time shows when priorities change.
+
+Inverse optimization recovers parameters of an optimization model from observed solutions and is a mature field \citep{ahuja2001,chan2025review}. With noisy observations, estimators based on optimality conditions can be inconsistent, while decision-space losses are consistent but hard to compute \citep{aswani2018}. For linear programs, cost vectors are generically not point-identified \citep{ahmadi2026}. Inverse multiobjective optimization infers weights of several objectives \citep{chan2014,chanlee2018,dongzeng2021,gebken2021,carrizosa2026}. We found one paper titled inverse goal programming, which adjusts deviation weights so that a single noiseless solution becomes optimal with targets fixed \citep{saif2023}; we found no method that recovers aspiration levels and weights jointly from noisy sequential decisions. Economists infer preference parameters from policy: implicit inflation targets and loss weights of central banks \citep{dennis2006,favero2003,ozlale2003,ireland2007,shapiro2021}, welfare weights from tax schedules \citep{bourguignon2012,saez2016,hendren2020}, and inequality aversion from public service allocations \citep{behrman1987}. These approaches use smooth (usually quadratic) losses; an asymmetric, piecewise-linear loss of the kind studied by \citet{shapiro2021} is a one-goal interval goal program. A goal-programming formulation adds explicit aspiration bands, several goals with asymmetric weights, and set-valued answers when the data do not determine a point.
+
+\paragraph{Contributions.} (i) A forward model for repeated decisions under interval goals with an adjustment cost, and a change of variables that makes the inverse problem linear apart from discrete states (Section~\ref{sec:model}). (ii) Structural results: breakpoint optimality, identification of effective weights only, exact revelation of aspiration levels at band edges, set identification of weights under linear adjustment cost and point identification under quadratic adjustment cost (Section~\ref{sec:ident}). (iii) An exact MILP estimator with a strict-optimality margin, and a scalable multistart algorithm with exact LP/LNS polishing (Section~\ref{sec:alg}). (iv) A pre-registered validation on central banks with public targets (Section~\ref{sec:cb}) and applications to public budgets and firms (Section~\ref{sec:apps}).
+
+\section{Forward model}\label{sec:model}
+At decision time $t$ the decision maker observes $x_t\in\mathbb{R}^K$, the values goal variables would take if the policy were unchanged, and chooses a change $D$. Goal $k$ responds linearly, $y_k(D)=x_{kt}+\beta_k D$ with $\beta_k\neq 0$. Each goal is an interval goal $[\tau_k-b_k,\tau_k+b_k]$ with weights $w_k^+$ for overshooting and $w_k^-$ for undershooting. With adjustment cost $C(D)$,
+\begin{equation}\label{eq:forward}
+F_t(D)=\sum_{k=1}^K\Big[w_k^+\big(y_k(D)-\tau_k-b_k\big)_+ + w_k^-\big(\tau_k-b_k-y_k(D)\big)_+\Big]+C(D).
+\end{equation}
+We study $C(D)=|D|$ (linear) and $C(D)=D^2/2$ (quadratic). For $\beta_k<0$ let $\alpha_k=1/|\beta_k|$, $c_k=\alpha_k\tau_k$, $d_k=\alpha_k b_k$, $\omega_k^\pm=w_k^\pm/\alpha_k$ and $g_{kt}(D)=\alpha_k x_{kt}-D-c_k$. Then
+\begin{equation}\label{eq:scaled}
+F_t(D)=\sum_k\Big[\omega_k^+\big(g_{kt}(D)-d_k\big)_+ + \omega_k^-\big(-g_{kt}(D)-d_k\big)_+\Big]+C(D),
+\end{equation}
+in which the kinks are linear in $(\alpha,c,d,D)$ and the slopes are the weights. For controls that move the goal variable one-for-one (budget shares), $\alpha_k=1$ and $D$ is replaced by $-D$.
+
+\section{Identification}\label{sec:ident}
+\begin{proposition}[Breakpoints]\label{prop:bp}
+With $C(D)=|D|$, $F_t$ is convex, piecewise linear and coercive, and a minimiser lies in $\mathcal{C}_t=\{0\}\cup\{\alpha_kx_{kt}-c_k\mp d_k\}_{k}$.
+\end{proposition}
+\begin{proof}
+Each term is convex and piecewise linear in $D$. As $D\to+\infty$ the slope tends to $1+\sum_k\omega_k^->0$ and as $D\to-\infty$ to $-(1+\sum_k\omega_k^+)<0$, so the function is coercive; a convex piecewise-linear coercive function attains its minimum at a breakpoint, and the breakpoints are $0$ and the band edges.
+\end{proof}
+\begin{proposition}[Effective weights]\label{prop:eff}
+Decisions depend on $(w,\beta,\tau,b)$ only through $(\alpha,\tau,b,\omega)$. Raw weights and transmission are not separately identified; the effective weight $\omega_k=w_k|\beta_k|$ is.
+\end{proposition}
+\begin{proof}
+The substitution leading to \eqref{eq:scaled} is exact.
+\end{proof}
+\begin{proposition}[Edge revelation]\label{prop:edge}
+If at an optimum goal $k$ sits on its upper (lower) band edge, then $\tau_k+b_k=x_{kt}-D^*_t/\alpha_k$ (respectively $\tau_k-b_k$). With noiseless decisions, two upper-edge and two lower-edge observations with distinct $x_{kt}$ determine $\alpha_k,\tau_k,b_k$.
+\end{proposition}
+\begin{proof}
+On the edge $g_{kt}(D^*)=d_k$, i.e. $D^*=\alpha_kx_{kt}-c_k-d_k$, one linear equation in $(\alpha_k,c_k+d_k)$; two with distinct $x_{kt}$ determine both. The lower edge gives $c_k-d_k$, hence $c_k,d_k$ and $\tau_k=c_k/\alpha_k$, $b_k=d_k/\alpha_k$.
+\end{proof}
+\begin{proposition}[Set identification under linear cost]\label{prop:set}
+Fix $(\alpha,c,d)$ and let $C(D)=|D|$. The weights consistent with any sample of optimal decisions form a polyhedron, and point identification can only arise from coincident breakpoints.
+\end{proposition}
+\begin{proof}
+Optimality is $0\in\partial F_t(D^*_t)$: $\sigma_t=\sum_k(p_{kt}-q_{kt})$ with $\sigma_t\in\partial|D^*_t|$, $p_{kt}\in[0,\omega_k^+]$ equal to $\omega_k^+$ strictly above the band and $0$ strictly inside, and $q_{kt}$ likewise. By Proposition~\ref{prop:bp}, $D^*_t$ is a breakpoint, where at least one of $\sigma_t,p_{kt},q_{kt}$ ranges over an interval; the condition therefore constrains $\omega$ only through linear inequalities, whose solution set is a polyhedron that is full-dimensional unless breakpoints coincide.
+\end{proof}
+\begin{proposition}[Point identification under gradualism]\label{prop:quad}
+Let $C(D)=D^2/2$. Then $F_t$ is strictly convex with a unique minimiser satisfying $D^*_t=\sum_k(p_{kt}-q_{kt})$. A period in which exactly goal $k$ is strictly above its band and no edge is reached reveals $\omega_k^+=D^*_t$; similarly for $\omega_k^-$. Together with Proposition~\ref{prop:edge}, weights and aspiration levels are point-identified when such periods occur.
+\end{proposition}
+\begin{proof}
+Strict convexity follows from the quadratic term. In the stated state, $p_{kt}=\omega_k^+$ and all other multipliers vanish, so stationarity gives $D^*_t=\omega_k^+$.
+\end{proof}
+\begin{remark}
+Under gradualism the decision maker moves in steps of size $\omega_k$ while goal $k$ stays outside its band and stops at the band edge. This is the behaviour of central banks that change rates in repeated small steps and of firms that adjust leverage partially towards a target \citep{flannery2006}.
+\end{remark}
+
+\section{Estimation}\label{sec:alg}
+Observed decisions are $D_t^{\mathrm{obs}}=D_t^*+\varepsilon_t$. We minimise the decision-space loss $\frac1T\sum_t|D_t^{\mathrm{obs}}-D^*_t(\theta)|$ over $\theta=(\alpha,c,d,\omega^+,\omega^-)$, which is consistent under standard conditions but hard in general \citep{aswani2018}.
+
+\paragraph{Exact MILP.} Binary states per period and goal (upper active, strictly above, lower active, strictly below), big-$M$ links to the linear kink functions, and stationarity written with multipliers give a mixed-integer linear program. Products of weights and binaries are linearised exactly. Under linear cost, flat optima allow the fitted decisions to absorb noise; we therefore impose a strict-optimality margin: the right derivative of $F_t$ at $D_t$ is at least $\epsilon$ and the left derivative at most $-\epsilon$. Under quadratic cost the optimum is unique and no margin is needed.
+
+\paragraph{Multistart with exact polishing.} Under quadratic cost the decision loss is continuous in $\theta$, and $D^*_t(\theta)$ is computed in $O(K\,3^K)$ operations per period by evaluating breakpoints and stationary points. We run Powell's method from many random starts in parallel, then polish the best solutions: with all states fixed the estimation problem is a linear program; large-neighbourhood search frees the states of a subset of periods (largest residuals plus random periods) and solves the small MILP exactly.
+
+\paragraph{Synthetic evidence.} Table~\ref{tab:synth} summarises runs with $K=2$, $T=80$ and Laplace decision noise. The full MILP stalls on weak relaxations; differential evolution finds the noiseless optimum but not the noisy one; the multistart algorithm reaches a loss below that of the true parameters at noise $0.05$ and recovers aspiration levels, bands, transmission and, approximately, weights.
+\begin{table}[t]\centering\small
+\begin{tabular}{llrr}\toprule
+Model & Algorithm & Fitted loss & Loss at true $\theta$\\\midrule
+Linear cost, noise 0.1 & full MILP (120 s) & 0.205 & 0.089\\
+ & LNS (29 s) & 0.189 & 0.089\\
+ & DE + LP + LNS (32 s) & 0.101 & 0.089\\
+Quadratic cost, noise 0 & DE, 3000 generations (189 s) & 0.000 & 0.000\\
+Quadratic cost, noise 0.05 & DE + LP + LNS & 0.093 & 0.055\\
+ & multistart + LP + LNS (267 s) & 0.052 & 0.055\\
+Quadratic cost, noise 0.1 & multistart + LP + LNS (925 s) & 0.111 & 0.106\\
+\bottomrule\end{tabular}
+\caption{Estimation on synthetic data ($K=2$, $T=80$).}\label{tab:synth}
+\end{table}
+
+\section{Validation on central banks}\label{sec:cb}
+Inflation-targeting central banks publish numeric targets, so the implied target $\hat\tau$ can be compared with the truth. Inputs are quarterly: the change in the policy rate (BIS), inflation four quarters ahead (realised, as a proxy for the forecast) and the GDP growth gap; quarters with the policy rate at or below 0.25\% are dropped. The benchmark is average inflation over the same window, which is a strong estimator for credible banks because inflation averages close to target.
+
+\paragraph{Development.} Earlier specifications with a linear adjustment cost did not beat the benchmark (mean absolute error 0.72--1.55 pp against 0.47). The gradualism model gave Table~\ref{tab:cbexp}. Because this specification was chosen after others failed, these results are exploratory.
+\begin{table}[t]\centering\small\input{tab_cb_exploratory.tex}
+\caption{Exploratory banks (gradualism model, realised inputs).}\label{tab:cbexp}\end{table}
+
+\paragraph{Pre-registered confirmatory test.} Before compiling targets for new banks we fixed the sample rule, window rule, specification and success criterion (a document committed to the project repository). Five banks qualified (Table~\ref{tab:cbconf}). In the three banks whose average inflation deviated from target by more than 0.5 pp (New Zealand, Colombia, Turkey) the implied target was closer to the stated target in all three (MAE 0.50 against 2.34), meeting the criterion. In Israel and Hungary, where inflation averaged close to target, average inflation was much closer. Across both samples, the implied target was closer in all seven off-target cases.
+\begin{table}[t]\centering\small\input{tab_cb_confirmatory.tex}
+\caption{Confirmatory banks, pre-registered specification.}\label{tab:cbconf}\end{table}
+
+\paragraph{Uncertainty.} \pend{Moving-block bootstrap intervals: pending.}
+
+\section{Applications}\label{sec:apps}
+\pend{Revealed targets for aid (ODA/GNI by donor against the 0.7\% commitment), defence spending of NATO allies (2015--2021 and 2022--2025 against the 2\% guideline), and leverage targets of US listed firms by industry: pending.}
+
+\section{Discussion and limitations}
+The method recovers what actors pursue when outcomes and announcements diverge, which is where revealed aspirations matter most. It is less reliable than simple averages when outcomes already sit at the target. Inputs are proxies (realised inflation rather than real-time forecasts; official forecasts are conditional on policy paths and drift towards the target by construction). The forward model is myopic and linear in transmission. Estimation is not certified globally optimal for long series. The confirmatory sample is small. Revealed aspiration levels are those of a goal program that rationalises the decisions; they are not a claim about the decision maker's reasoning.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}
