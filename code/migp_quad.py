@@ -101,15 +101,19 @@ def polish(X, D_obs, v, lns_iters=15, sub_size=12, sub_time=10, seed=0, **kw):
     th = (v[:K], v[K:2*K], v[2*K:3*K], v[3*K:4*K], v[4*K:])
     D0 = forward_batch(X, *th); fix = states_from(X, D0, th[0], th[1], th[2])
     best = dict(loss=np.abs(D_obs - D0).mean(), alpha=th[0], tau=th[1], b=th[2], omega_p=th[3], omega_m=th[4], D=D0)
-    p, V = _build(X, D_obs, fix=fix, free=np.zeros(T, bool), **kw); p.solve(solver=cp.HIGHS)
-    if V["al"].value is not None and p.value < best["loss"]:
+    p, V = _build(X, D_obs, fix=fix, free=np.zeros(T, bool), **kw)
+    try: p.solve(solver=cp.HIGHS)
+    except cp.error.SolverError: pass
+    if V["al"].value is not None and p.value is not None and p.value < best["loss"]:
         best = _res(p, V); fix = {k: np.round(V[k].value) for k in ["a", "s", "l", "z"]}
     rng = np.random.default_rng(seed)
     for it in range(lns_iters):
         res = np.abs(D_obs - best["D"]); k1 = sub_size // 2
         worst = np.argsort(-res)[:k1]; rand = rng.choice(np.setdiff1d(np.arange(T), worst), sub_size - k1, replace=False)
         free = np.zeros(T, bool); free[np.r_[worst, rand]] = True
-        p2, V2 = _build(X, D_obs, fix=fix, free=free, **kw); p2.solve(solver=cp.HIGHS, time_limit=sub_time)
+        p2, V2 = _build(X, D_obs, fix=fix, free=free, **kw)
+        try: p2.solve(solver=cp.HIGHS, time_limit=sub_time)
+        except cp.error.SolverError: continue
         if p2.value is not None and V2["al"].value is not None and p2.value < best["loss"] - 1e-9:
             best = _res(p2, V2); fix = {k: np.round(V2[k].value) for k in ["a", "s", "l", "z"]}
     return best

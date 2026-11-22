@@ -12,7 +12,10 @@ def fit_k1(x, delta, n_starts=200):
     lo = np.array([0.9999, np.percentile(x, 1), 0.0, 0.0, 0.0]); span = np.abs(delta).max()
     hi = np.array([1.0001, np.percentile(x, 99), (x.max() - x.min()) / 2, 2 * span, 2 * span])
     h = Q.fit_ms(X, D, n_starts=n_starts, top=3, lo=lo, hi=hi, lns_iters=5, alpha_bounds=(0.9999, 1.0001))
-    return dict(tau=float(h["tau"][0]), b=float(h["b"][0]), step_cut=float(h["omega_p"][0]), step_raise=float(h["omega_m"][0]),
+    # a step at its upper bound means no period was strictly outside the band on that side: not identified
+    sc, sr = float(h["omega_p"][0]), float(h["omega_m"][0])
+    sc = sc if sc < hi[3] * 0.999 and sc < 4.999 else np.nan; sr = sr if sr < hi[4] * 0.999 and sr < 4.999 else np.nan
+    return dict(tau=float(h["tau"][0]), b=float(h["b"][0]), step_cut=sc, step_raise=sr,
                 loss=float(h["loss"]), n=len(x), mean_level=float(x.mean()))
 
 def panel(df, unit, val):
@@ -26,6 +29,9 @@ def aid():
     a = a[((a.measure.astype(str) == "2") & (a.year <= 2017)) | ((a.measure.astype(str) == "11002") & (a.year >= 2018))]
     a = a[a.unit == "PT_B5G"].groupby(["donor", "year"], as_index=False).value.first()
     p = panel(a, "donor", "value"); p = p[p.year != 2018]
+    countries = pd.read_csv("data/aid/worldbank_country_meta.csv.gz")
+    iso = set(countries[(countries.region != "Aggregates") & (countries.income_group != "Aggregates")].iso3)
+    p = p[p.donor.isin(iso)]                                     # bilateral country donors only (drop DAC, G7, EU aggregates)
     rows = []
     for donor, g in p.groupby("donor"):
         if len(g) < 30: continue
