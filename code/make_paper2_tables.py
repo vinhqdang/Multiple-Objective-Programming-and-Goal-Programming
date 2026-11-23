@@ -13,8 +13,8 @@ def tab(df, tcol, mcol, cap_rows):
     return "\n".join(L)
 open("paper2/tab_cb_exploratory.tex", "w").write(tab(e, "tau_pi", "mean_x", None))
 open("paper2/tab_cb_confirmatory.tex", "w").write(tab(c, "tau_pi", "mean_infl", None))
-if os.path.exists("results/bootstrap_cb_summary.csv"):
-    b = pd.read_csv("results/bootstrap_cb_summary.csv")
+if os.path.exists("results/bootstrap_cb_full_summary.csv"):
+    b = pd.read_csv("results/bootstrap_cb_full_summary.csv")
     L = [r"\begin{tabular}{lrrrrc}\toprule", r"Bank & Stated & 5\% & Median & 95\% & Covers stated \\\midrule"]
     for _, r in b.iterrows():
         L.append(f"{r.country} & {r.stated:.1f} & {r.lo:.2f} & {r.med:.2f} & {r.hi:.2f} & {'yes' if r.covers_stated else 'no'}\\\\")
