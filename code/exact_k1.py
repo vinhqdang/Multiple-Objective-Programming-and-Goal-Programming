@@ -69,3 +69,27 @@ def tau_set(x, D, alpha, rel=0.02, om_max=None):
         if len(ok):
             lo = min(lo, (E[i] + E[ok[0]]) / (2 * alpha)); hi = max(hi, (E[i] + E[ok[-1]]) / (2 * alpha))
     return lo, hi, best / len(D)
+
+def profile_tau(x, D, alpha, taus, om_max=None):
+    """Exact profile loss: for each tau, the minimum loss over (b, omega+, omega-) with tau fixed.
+    With e_plus = alpha*tau + d and e_minus = alpha*tau - d (d >= 0), the objective is piecewise linear in
+    (d, omega+, omega-); the optimal d lies in {+-(z_t - D_s - alpha*tau)} U {+-(z_t - alpha*tau)} U {0}."""
+    z = alpha * x; om_max = np.abs(D).max() * 1.0001 + 1e-12 if om_max is None else om_max
+    absD = np.abs(D); order = np.argsort(z); zs, ds = z[order], absD[order]; cs = np.concatenate([[0], np.cumsum(ds)])
+    base = np.unique(np.concatenate([(z[:, None] - D[None, :]).ravel(), z]))
+    out = []
+    for tau in taus:
+        c = alpha * tau
+        dd = np.unique(np.abs(np.concatenate([base - c, [0.0]])))
+        ep, em = c + dd, c - dd
+        Up, _ = _upper_best(z, D, ep, om_max); Lm, _ = _upper_best(-z, -D, -em, om_max)
+        mid = cs[np.searchsorted(zs, ep, side="right")] - cs[np.searchsorted(zs, em, side="left")]
+        out.append((Up + Lm + mid).min() / len(D))
+    return np.array(out)
+
+def tau_set_profile(x, D, alpha, rel=0.02, step=0.005, lo=None, hi=None):
+    """Near-optimal tau set from the exact profile on a grid (spacing `step`)."""
+    lo = x.min() - 1 if lo is None else lo; hi = x.max() + 1 if hi is None else hi
+    taus = np.arange(lo, hi + step / 2, step); prof = profile_tau(x, D, alpha, taus)
+    best = prof.min(); ok = taus[prof <= best * (1 + rel) + 1e-12]
+    return ok.min(), ok.max(), best, (len(ok) == ((ok.max() - ok.min()) / step + 1).round())   # last: contiguous?
