@@ -23,15 +23,15 @@ print("ok")
 
 a = pd.read_csv("results/applications_gp_aid_defence_firms.csv")
 def fmt(v): return "--" if pd.isna(v) else f"{v:.2f}"
-aid = a[a.domain == "ODA % GNI"].sort_values("tau", ascending=False)
-L = [r"\begin{tabular}{lrrrrrr}\toprule", r"Donor & $n$ & $\hat\tau$ & Band & Step down & Step up & Mean level\\\midrule"]
-for _, r in aid.iterrows():
-    L.append(f"{r.unit} & {int(r.n)} & {r.tau:.2f} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
+ax = pd.read_csv("results/aid_exact.csv").sort_values("tau", ascending=False)
+L = [r"\begin{tabular}{lrrrrrr}\toprule", r"Donor & $n$ & $\hat\tau$ & Band & Near-optimal $\tau$ set & Steps (down, up) & Mean level\\\midrule"]
+for _, r in ax.iterrows():
+    L.append(f"{r.donor} & {int(r.n)} & {r.tau:.2f} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.tau_set2} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid.tex", "w").write("\n".join(L))
-oth = a[a.domain != "ODA % GNI"]
+de = pd.read_csv("results/defence_exact.csv"); fi = a[a.domain.str.startswith("book")]
 L = [r"\begin{tabular}{llrrrrr}\toprule", r"Domain & Unit & $n$ & Band & Step down & Step up & Mean level\\\midrule"]
-for _, r in oth.iterrows():
-    dom = "Defence, NATO def." if r.domain.startswith("defence") else "Book leverage"
-    unit = r.unit.replace("NATO def., ", "")
-    L.append(f"{dom} & {unit} & {int(r.n)} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
+for _, r in de.iterrows():
+    L.append(f"Defence, NATO def. & {r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.step_cut:.2f} & {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
+for _, r in fi.iterrows():
+    L.append(f"Book leverage & {r.unit} & {int(r.n)} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_def_firms.tex", "w").write("\n".join(L))
