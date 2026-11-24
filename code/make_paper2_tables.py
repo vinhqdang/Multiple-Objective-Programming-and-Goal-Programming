@@ -46,3 +46,11 @@ for dom, lab in [("aid", "Aid (donors)"), ("central bank", "Central banks"), ("d
     strict = int(sum((M[i, 0] < np.delete(M[i], 0).min() - 1e-12) for i in range(len(z)))); worse = int((z.gp > z.hold + 1e-12).sum())
     L.append(f"{lab} & {len(z)} & {z.gp.mean():.3f} & {z.pa.mean():.3f} & {z.hold.mean():.3f} & {z.medchg.mean():.3f} & {strict}/{len(z)} & {worse}/{len(z)}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_mcomp.tex", "w").write("\n".join(L))
+
+pl = pd.read_csv("results/misspec_placebo.csv"); g = pl.groupby("kind")
+L = [r"\begin{tabular}{lrrrrrr}\toprule", r"True behaviour & $\hat\tau$ median & $\hat\tau$ IQR & Gain over hold & $\tau$-set width & GP beats hold & GP beats PA\\\midrule"]
+for k, lab in [("gp", "Interval goal program"), ("coin", "Random (coin flip)"), ("partial", "Partial adjustment"), ("qp", "Quadratic program (solver)")]:
+    z = pl[pl.kind == k]; t = z.tau_gp
+    L.append(f"{lab} & {t.median():.2f} & {t.quantile(.75)-t.quantile(.25):.2f} & {100*z.gain_vs_hold.median():.0f}\\% & {z.set_width.median():.2f} & "
+             f"{100*(z.oos_gp < z.oos_hold).mean():.0f}\\% & {100*(z.oos_gp < z.oos_pa).mean():.0f}\\%\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_placebo.tex", "w").write("\n".join(L))
