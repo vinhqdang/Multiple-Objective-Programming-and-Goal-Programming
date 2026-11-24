@@ -8,7 +8,7 @@ Please consider the enclosed manuscript, "Revealed Aspiration Levels: Inverse In
 
 **Contribution to economic and social sciences.** Public actors announce targets; their decisions reveal what they pursue. We validate the method on central banks, whose targets are public, with a test whose sample, specification and success criterion were fixed and recorded before estimation: where inflation had deviated from target, the revealed target was closer to the announced one than average inflation in every case. We then estimate revealed aid targets for 23 donor countries; a calibrated permutation test finds goal-seeking for 14 of them at the 10% level, and among these the revealed targets range from about 0.2% to about 1% of gross national income against a common commitment of 0.7%, and the shift in the spending behaviour of NATO allies after 2022. We report where the method is less reliable (outcomes already at target; corporate leverage with a single goal).
 
-All data are public (BIS, OECD, Eurostat, NATO, SEC EDGAR), and the code reproduces every table.
+All data are public (BIS, OECD, Eurostat, NATO, SEC EDGAR), and the code that reproduces every table is available at https://github.com/vinhqdang/Multiple-Objective-Programming-and-Goal-Programming.
 
 Sincerely,
 
