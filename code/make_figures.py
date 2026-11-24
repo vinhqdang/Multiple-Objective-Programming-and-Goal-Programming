@@ -34,7 +34,7 @@ fig.tight_layout(rect=(0, 0.06, 1, 1)); fig.savefig("paper2/fig_aid_profiles.pdf
 # 3. central banks: implied vs stated
 e = pd.read_csv("results/real_cb_quad.csv"); e = e[e.input == "realised"].rename(columns={"tau_pi": "tau", "mean_x": "mean"})
 c = pd.read_csv("results/confirmatory_cb.csv"); c = c[c.status == "included"].rename(columns={"tau_pi": "tau", "mean_infl": "mean"})
-b = pd.read_csv("results/bootstrap_cb_full_summary.csv").set_index("country")
+b = pd.read_csv("results/bootstrap_cb_100_summary.csv").set_index("country")
 fig, ax = plt.subplots(figsize=(4.2, 3.6))
 for df, col, lab in [(e, "C0", "exploratory"), (c, "C1", "confirmatory")]:
     for _, r in df.iterrows():
