@@ -24,9 +24,12 @@ print("ok")
 a = pd.read_csv("results/applications_gp_aid_defence_firms.csv")
 def fmt(v): return "--" if pd.isna(v) else f"{v:.2f}"
 ax = pd.read_csv("results/aid_exact.csv").sort_values("tau", ascending=False)
-L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Donor & $n$ & $\hat\tau$ & Band & $\tau$ set (2\%) & $\tau$ set (5\%) & Steps (down, up) & Mean\\\midrule"]
+pt = pd.read_csv("results/permutation_test.csv"); pt = pt[pt.domain == "aid"].set_index("unit").p
+ax["p"] = ax.donor.map(pt); ax = ax.sort_values(["p", "tau"], ascending=[True, False])
+L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Donor & $n$ & $p$ & $\hat\tau$ & Band & $\tau$ set (2\%) & Steps (down, up) & Mean\\\midrule"]
 for _, r in ax.iterrows():
-    L.append(f"{r.donor} & {int(r.n)} & {r.tau:.2f} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.set2} & {r.set5} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
+    star = "$^{**}$" if r.p <= 0.05 else ("$^{*}$" if r.p <= 0.10 else "")
+    L.append(f"{r.donor}{star} & {int(r.n)} & {r.p:.3f} & {r.tau:.2f} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.set2} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid.tex", "w").write("\n".join(L))
 de = pd.read_csv("results/defence_exact.csv"); fi = a[a.domain.str.startswith("book")]
 L = [r"\begin{tabular}{llrrrrr}\toprule", r"Domain & Unit & $n$ & Band & Step down & Step up & Mean level\\\midrule"]
