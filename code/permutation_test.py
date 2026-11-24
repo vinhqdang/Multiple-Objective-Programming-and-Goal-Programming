@@ -1,7 +1,8 @@
 """Permutation test for goal-seeking behaviour (one goal, alpha = 1, exact estimator).
 Null hypothesis: decisions are exchangeable and unrelated to the state, and the level evolves only through the
 decisions, x_{t+1} = x_t + Delta_t (an identity for the aid series, where Delta is the change of the ratio).
-Null samples: permute the decisions and rebuild the level path from x_1. Statistic: in-sample gain of the fitted
+Null samples: permute the decisions and rebuild the level path from x_1, keeping the non-decision jump at the
+2018 definitional break in place. Statistic: in-sample gain of the fitted
 goal program over 'hold'. p = (1 + #{null >= observed}) / (B + 1), B = 199. Calibration: random decisions on the
 same level dynamics (simulated, deterministic seeds)."""
 import sys; sys.path.insert(0, "code")
@@ -12,14 +13,18 @@ B = 199
 def gain(x, d):
     return 1 - X.solve_fixed_alpha(x, -d, 1.0)["loss"] / np.abs(d).mean()
 
-def rebuild(x1, d):
-    return x1 + np.concatenate([[0.0], np.cumsum(d)[:-1]])
+def rebuild(x1, d, jumps=None):
+    """Level path from x1 under decisions d; `jumps` are non-decision changes between consecutive rows
+    (zero except at the 2018 definitional break, where they are kept as observed)."""
+    j = np.zeros(len(d)) if jumps is None else jumps
+    return x1 + np.concatenate([[0.0], np.cumsum(d + j)[:-1]])
 
 def ptest(x, d, seed):
     rng = np.random.default_rng(seed); g0 = gain(x, d)
+    jumps = np.append(x[1:] - x[:-1] - d[:-1], 0.0)         # non-decision jumps (break), kept in place
     null = np.empty(B)
     for i in range(B):
-        dp = rng.permutation(d); null[i] = gain(rebuild(x[0], dp), dp)
+        dp = rng.permutation(d); null[i] = gain(rebuild(x[0], dp, jumps), dp)
     return g0, (1 + (null >= g0).sum()) / (B + 1), np.percentile(null, 95)
 
 def aid_job(item):
