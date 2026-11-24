@@ -35,3 +35,11 @@ for _, r in de.iterrows():
 for _, r in fi.iterrows():
     L.append(f"Book leverage & {r.unit} & {int(r.n)} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_def_firms.tex", "w").write("\n".join(L))
+
+mc = pd.read_csv("results/model_comparison.csv")
+L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Domain & Units & GP & PA & Hold & Median change & GP strictly best & GP worse than hold\\\midrule"]
+for dom, lab in [("aid", "Aid (donors)"), ("central bank", "Central banks"), ("defence", "Defence (periods)")]:
+    z = mc[mc.domain == dom]; M = z[["gp", "pa", "hold", "medchg"]].values
+    strict = int(sum((M[i, 0] < np.delete(M[i], 0).min() - 1e-12) for i in range(len(z)))); worse = int((z.gp > z.hold + 1e-12).sum())
+    L.append(f"{lab} & {len(z)} & {z.gp.mean():.3f} & {z.pa.mean():.3f} & {z.hold.mean():.3f} & {z.medchg.mean():.3f} & {strict}/{len(z)} & {worse}/{len(z)}\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_mcomp.tex", "w").write("\n".join(L))

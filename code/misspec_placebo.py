@@ -45,11 +45,11 @@ def evaluate(x, d):
                 oos_hold=np.abs(d[cut:]).mean(), oos_meanchg=np.abs(d[cut:] - np.median(d[:cut])).mean())
 
 def job(args):
-    kind, rep = args; rng = np.random.default_rng(hash((kind, rep)) % (2**32))
+    kind, rep = args; rng = np.random.default_rng(10_000 * ["gp", "coin", "partial", "qp"].index(kind) + rep)
     x, d = simulate(kind, 60, rng); r = evaluate(x, d); r.update(kind=kind, rep=rep); return r
 
 if __name__ == "__main__":
-    jobs = [(k, r) for k in ("gp", "coin", "partial", "qp") for r in range(50)]
+    jobs = [(k, r) for k in ("gp", "coin", "partial", "qp") for r in range(100)]
     with Pool(4) as p: out = pd.DataFrame(p.map(job, jobs, chunksize=2))
     out.to_csv("results/misspec_placebo.csv", index=False)
     g = out.groupby("kind")
