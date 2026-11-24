@@ -24,18 +24,27 @@ print("ok")
 a = pd.read_csv("results/applications_gp_aid_defence_firms.csv")
 def fmt(v): return "--" if pd.isna(v) else f"{v:.2f}"
 ax = pd.read_csv("results/aid_exact.csv").sort_values("tau", ascending=False)
-pt = pd.read_csv("results/permutation_test.csv"); pt = pt[pt.domain == "aid"].set_index("unit").p
-ax["p"] = ax.donor.map(pt); ax = ax.sort_values(["p", "tau"], ascending=[True, False])
-L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Donor & $n$ & $p$ & $\hat\tau$ & Band & $\tau$ set (2\%) & Steps (down, up) & Mean\\\midrule"]
+import os
+from permutation_extend import bh
+pe = pd.read_csv("results/permutation_extend.csv") if os.path.exists("results/permutation_extend.csv") else None
+pt = (pe[pe.domain == "aid"] if pe is not None else pd.read_csv("results/permutation_test.csv").query("domain == 'aid'")).set_index("unit")
+pt["p_bh"] = bh(pt.p.values)
+pn = pd.read_csv("results/pa_null_test.csv").set_index("unit"); pn["p_bh"] = bh(pn.p.values)
+ax["p1"] = ax.donor.map(pt.p); ax["q1"] = ax.donor.map(pt.p_bh); ax["p2"] = ax.donor.map(pn.p); ax["q2"] = ax.donor.map(pn.p_bh)
+ax = ax.sort_values(["q2", "q1", "tau"], ascending=[True, True, False])
+L = [r"\begin{tabular}{lrcccccc}\toprule",
+     r"Donor & $n$ & \hd{State dependence\\$p$ (BH)} & \hd{GP vs PA\\$p$ (BH)} & $\hat\tau$ & \hd{Band\\($\tau$ set, 2\%)} & \hd{Steps\\(down, up)} & Mean\\\midrule"]
 for _, r in ax.iterrows():
-    star = "$^{**}$" if r.p <= 0.05 else ("$^{*}$" if r.p <= 0.10 else "")
-    L.append(f"{r.donor}{star} & {int(r.n)} & {r.p:.3f} & {r.tau:.2f} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.set2} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
+    star = r"$^{\dagger}$" if (r.q1 <= 0.10 and r.q2 <= 0.10) else ""
+    L.append(f"{r.donor}{star} & {int(r.n)} & {r.p1:.3f} ({r.q1:.2f}) & {r.p2:.3f} ({r.q2:.2f}) & {r.tau:.2f} & \\hd{{[{r.band_lo:.2f}, {r.band_hi:.2f}]\\\\({r.set2[1:-1]})}} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid.tex", "w").write("\n".join(L))
 de = pd.read_csv("results/defence_exact.csv"); fi = a[a.domain.str.startswith("book")]
 H = r"$n$ & Band & Step down & Step up & Mean level\\\midrule"
-L = [r"\begin{tabular}{lrcrrr}\toprule", "Period & " + H]
+du = pd.read_csv("results/defence_uncertainty.csv").set_index("period")
+L = [r"\begin{tabular}{lrcrrrcc}\toprule", r"Period & $n$ & Band & \hd{Step\\down} & \hd{Step\\up} & \hd{Mean\\level} & \hd{Lower edge:\\2\% set} & \hd{Lower edge:\\bootstrap 90\%}\\\midrule"]
 for _, r in de.iterrows():
-    L.append(f"{r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.step_cut:.2f} & {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
+    u = du.loc[r.period]
+    L.append(f"{r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.step_cut:.2f} & {r.step_raise:.2f} & {r.mean_level:.2f} & [{u.set2_lo:.2f}, {u.set2_hi:.2f}] & [{u.boot_lo5:.2f}, {u.boot_lo95:.2f}]\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_defence.tex", "w").write("\n".join(L))
 L = [r"\begin{tabular}{lrcrrr}\toprule", "Industry & " + H]
 for _, r in fi.iterrows():
@@ -57,3 +66,14 @@ for k, lab in [("gp", "Interval goal program"), ("coin", "Random (coin flip)"), 
     L.append(f"{lab} & {t.median():.2f} & {t.quantile(.75)-t.quantile(.25):.2f} & {100*z.gain_vs_hold.median():.0f}\\% & {z.set_width.median():.2f} & "
              f"{100*(z.oos_gp < z.oos_hold).mean():.0f}\\% & {100*(z.oos_gp < z.oos_pa).mean():.0f}\\%\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_placebo.tex", "w").write("\n".join(L))
+
+bm = pd.read_csv("results/cb_benchmarks.csv")
+L = [r"\begin{tabular}{lrccccc}\toprule",
+     r"Sample & $n$ & \hd{Implied\\target} & \hd{Mean\\inflation} & \hd{Constant\\2.5\%} & \hd{Median of\\other banks} & \hd{Taylor rule\\(implied / ours)}\\\midrule"]
+for lab, z in [("Exploratory", bm[bm["sample"] == "exploratory"]), ("Confirmatory", bm[bm["sample"] == "confirmatory"]),
+               (r"\hd{Confirmatory\\without Turkey}", bm[(bm["sample"] == "confirmatory") & (bm.country != "TR")]),
+               ("All 14 banks", bm), (r"\hd{All without\\Turkey}", bm[bm.country != "TR"])]:
+    e = lambda c, zz=z: np.abs(zz[c] - zz.stated).mean(); tz = z.dropna(subset=["taylor"])
+    tay = r"\hd{" + f"{np.abs(tz.taylor - tz.stated).mean():.2f} / {np.abs(tz.implied - tz.stated).mean():.2f}" + r"\\" + f"($n={len(tz)}$)" + "}" if len(tz) else "--"
+    L.append(f"{lab} & {len(z)} & {e('implied'):.2f} & {e('mean_infl'):.2f} & {e('const25'):.2f} & {e('median_other'):.2f} & {tay}\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_cb_bench.tex", "w").write("\n".join(L))
