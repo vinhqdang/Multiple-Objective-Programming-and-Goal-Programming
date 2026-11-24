@@ -32,15 +32,18 @@ for _, r in ax.iterrows():
     L.append(f"{r.donor}{star} & {int(r.n)} & {r.p:.3f} & {r.tau:.2f} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.set2} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid.tex", "w").write("\n".join(L))
 de = pd.read_csv("results/defence_exact.csv"); fi = a[a.domain.str.startswith("book")]
-L = [r"\begin{tabular}{llrrrrr}\toprule", r"Domain & Unit & $n$ & Band & Step down & Step up & Mean level\\\midrule"]
+H = r"$n$ & Band & Step down & Step up & Mean level\\\midrule"
+L = [r"\begin{tabular}{lrcrrr}\toprule", "Period & " + H]
 for _, r in de.iterrows():
-    L.append(f"Defence, NATO def. & {r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.step_cut:.2f} & {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
+    L.append(f"{r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.step_cut:.2f} & {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_defence.tex", "w").write("\n".join(L))
+L = [r"\begin{tabular}{lrcrrr}\toprule", "Industry & " + H]
 for _, r in fi.iterrows():
-    L.append(f"Book leverage & {r.unit} & {int(r.n)} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
-L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_def_firms.tex", "w").write("\n".join(L))
+    L.append(f"{r.unit} & {int(r.n)} & [{r.tau-r.b:.2f}, {r.tau+r.b:.2f}] & {fmt(r.step_cut)} & {fmt(r.step_raise)} & {r.mean_level:.2f}\\\\")
+L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_firms.tex", "w").write("\n".join(L))
 
 mc = pd.read_csv("results/model_comparison.csv")
-L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Domain & Units & GP & PA & Hold & Median change & GP strictly best & GP worse than hold\\\midrule"]
+L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Domain & Units & GP & PA & Hold & \hd{Median\\change} & \hd{GP strictly\\best} & \hd{GP worse\\than hold}\\\midrule"]
 for dom, lab in [("aid", "Aid (donors)"), ("central bank", "Central banks"), ("defence", "Defence (periods)")]:
     z = mc[mc.domain == dom]; M = z[["gp", "pa", "hold", "medchg"]].values
     strict = int(sum((M[i, 0] < np.delete(M[i], 0).min() - 1e-12) for i in range(len(z)))); worse = int((z.gp > z.hold + 1e-12).sum())
@@ -48,8 +51,8 @@ for dom, lab in [("aid", "Aid (donors)"), ("central bank", "Central banks"), ("d
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_mcomp.tex", "w").write("\n".join(L))
 
 pl = pd.read_csv("results/misspec_placebo.csv"); g = pl.groupby("kind")
-L = [r"\begin{tabular}{lrrrrrr}\toprule", r"True behaviour & $\hat\tau$ median & $\hat\tau$ IQR & Gain over hold & $\tau$-set width & GP beats hold & GP beats PA\\\midrule"]
-for k, lab in [("gp", "Interval goal program"), ("coin", "Random (coin flip)"), ("partial", "Partial adjustment"), ("qp", "Quadratic program (solver)")]:
+L = [r"\begin{tabular}{lrrrrrr}\toprule", r"True behaviour & \hd{$\hat\tau$\\median} & \hd{$\hat\tau$\\IQR} & \hd{Gain over\\hold} & \hd{$\tau$-set\\width} & \hd{GP beats\\hold} & \hd{GP beats\\PA}\\\midrule"]
+for k, lab in [("gp", "Interval goal program"), ("coin", "Random (coin flip)"), ("partial", "Partial adjustment"), ("qp", "Quadratic program")]:
     z = pl[pl.kind == k]; t = z.tau_gp
     L.append(f"{lab} & {t.median():.2f} & {t.quantile(.75)-t.quantile(.25):.2f} & {100*z.gain_vs_hold.median():.0f}\\% & {z.set_width.median():.2f} & "
              f"{100*(z.oos_gp < z.oos_hold).mean():.0f}\\% & {100*(z.oos_gp < z.oos_pa).mean():.0f}\\%\\\\")
