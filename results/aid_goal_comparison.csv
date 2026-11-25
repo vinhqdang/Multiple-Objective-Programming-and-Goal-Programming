@@ -1,0 +1,16 @@
+donor,goal,in_band,in_set,in_set_gni,q_comb_iid
+SWE,1.0,False,False,True,0.023
+NOR,1.0,True,True,False,0.09966666666666667
+LUX,1.0,True,True,False,0.2162
+DNK,0.8,True,True,False,0.3197
+NLD,0.7,False,True,False,0.35362499999999997
+GBR,0.7,False,True,True,0.986
+AUT,0.7,False,False,False,0.34308333333333335
+BEL,0.7,False,False,False,0.35362499999999997
+DEU,0.7,True,True,True,0.89125
+ESP,0.7,False,False,False,0.6810555555555555
+FIN,0.7,False,False,False,0.238625
+FRA,0.7,False,False,True,0.2606666666666666
+IRL,0.7,False,False,False,0.6810555555555555
+ITA,0.7,False,False,False,0.986
+PRT,0.7,False,False,False,0.0575
