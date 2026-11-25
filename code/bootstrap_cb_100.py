@@ -1,4 +1,4 @@
-"""Moving-block bootstrap with 100 replicates per bank (after review; the 20-replicate version with the full
+"""Moving-block bootstrap with 100 replicates per bank (500 when run with BOOT_B=500) (after review; the 20-replicate version with the full
 estimator is in bootstrap_cb_full.py). Blocks of 8 quarters; the same resampling seeds as bootstrap_cb.py for the
 first 20 replicates. Each replicate uses the lighter search of bootstrap_cb.py (differential evolution, population
 40, 800 generations, LP polishing, no LNS). Besides tau we record alpha and the inflation band edges in the
@@ -10,7 +10,7 @@ from multiprocessing import Pool
 import migp_quad as Q
 from bootstrap_cb import data, CONF, BLOCK
 from inverse_interval_gp_cb import WINDOWS
-B = 100; OUT = "results/bootstrap_cb_100_reps.csv"
+B = int(os.environ.get('BOOT_B', 100)); OUT = "results/bootstrap_cb_100_reps.csv"
 
 def task(args):
     cc, q0, q1, b = args
