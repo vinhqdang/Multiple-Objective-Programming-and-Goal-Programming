@@ -15,9 +15,11 @@ open("paper2/tab_cb_exploratory.tex", "w").write(tab(e, "tau_pi", "mean_x", None
 open("paper2/tab_cb_confirmatory.tex", "w").write(tab(c, "tau_pi", "mean_infl", None))
 if os.path.exists("results/bootstrap_cb_100_summary.csv"):
     b = pd.read_csv("results/bootstrap_cb_100_summary.csv")
-    L = [r"\begin{tabular}{lrrrrcr}\toprule", r"Bank & Stated & 5\% & Median & 95\% & \hd{Covers\\stated} & \hd{Degenerate\\replicates} \\\midrule"]
+    def q(v): return "unbounded" if not np.isfinite(v) else f"{v:.2f}"
+    full = pd.concat([e.set_index("country").tau_pi, c.set_index("country").tau_pi])
+    L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Bank & Stated & \hd{$\hat\tau$\\(full)} & \hd{$\hat\tau$\\(light)} & 5\% & Median & 95\% & \hd{Degenerate\\replicates} \\\midrule"]
     for _, r in b.iterrows():
-        L.append(f"{r.country} & {r.stated:.1f} & {r.lo:.2f} & {r.med:.2f} & {r.hi:.2f} & {'yes' if r.covers_stated else 'no'} & {int(r.n_degenerate)}\\\\")
+        L.append(f"{r.country} & {r.stated:.1f} & {full[r.country]:.2f} & {r.point_light:.2f} & {q(r.lo)} & {q(r.med)} & {q(r.hi)} & {int(r.n_degenerate)} of {int(r.n_rep)}\\\\")
     L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_cb_bootstrap.tex", "w").write("\n".join(L))
 print("ok")
 
@@ -37,7 +39,7 @@ L = [r"\begin{tabular}{lrcccccc}\toprule",
 for _, r in ax.iterrows():
     star = r"$^{\dagger}$" if (r.q1 <= 0.10 and r.q2 <= 0.10) else ""
     L.append(f"{r.donor}{star} & {int(r.n)} & {r.p1:.3f} ({r.q1:.2f}) & {r.p2:.3f} ({r.q2:.2f}) & {r.tau:.2f} & \\hd{{[{r.band_lo:.2f}, {r.band_hi:.2f}]\\\\({r.set2[1:-1]})}} & {r.step_cut:.2f}, {r.step_raise:.2f} & {r.mean_level:.2f}\\\\")
-L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid.tex", "w").write("\n".join(L))
+L.append(r"\bottomrule\end{tabular}")  # superseded by make_aid_tables_r2.py (writes paper2/tab_aid.tex)
 de = pd.read_csv("results/defence_exact.csv"); fi = a[a.domain.str.startswith("book")]
 H = r"$n$ & Band & Step down & Step up & Mean level\\\midrule"
 du = pd.read_csv("results/defence_uncertainty.csv").set_index("period")

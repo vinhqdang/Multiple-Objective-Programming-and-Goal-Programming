@@ -38,8 +38,12 @@ b = pd.read_csv("results/bootstrap_cb_100_summary.csv").set_index("country")
 fig, ax = plt.subplots(figsize=(4.2, 3.6))
 for df, col, lab in [(e, "C0", "exploratory"), (c, "C1", "confirmatory")]:
     for _, r in df.iterrows():
-        lo, hi = b.loc[r.country, "lo"], b.loc[r.country, "hi"]
-        if np.isfinite(lo) and lo > -1 and hi < 12: ax.plot([r.stated, r.stated], [lo, hi], color=col, alpha=0.35, lw=3)
+        lo, hi, nd = b.loc[r.country, "lo"], b.loc[r.country, "hi"], int(b.loc[r.country, "n_degenerate"])
+        x0 = r.stated + (0.08 if r.country in ("IL", "MX", "CO") else 0.0)
+        ax.plot([x0, x0], [max(lo, 0.05), min(hi, 10.9)], color=col, alpha=0.35, lw=3)
+        if lo < 0.05: ax.annotate("", (x0, 0.0), (x0, 0.6), arrowprops=dict(arrowstyle="->", color=col, alpha=0.6))
+        if hi > 10.9: ax.annotate("", (x0, 11.0), (x0, 10.4), arrowprops=dict(arrowstyle="->", color=col, alpha=0.6))
+        if nd > 0: ax.annotate(f"{nd}", (x0 + 0.04, 0.25), fontsize=6, color=col)
     ax.scatter(df.stated, df.tau, color=col, label=f"implied, {lab}", zorder=3)
     ax.scatter(df.stated, df["mean"], facecolors="none", edgecolors=col, marker="s", label=f"mean inflation, {lab}", zorder=3)
     for _, r in df.iterrows(): ax.annotate(r.country, (r.stated + 0.05, r.tau), fontsize=7)
