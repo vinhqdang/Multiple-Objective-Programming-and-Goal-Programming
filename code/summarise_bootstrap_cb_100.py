@@ -1,5 +1,5 @@
-"""Summarise the moving-block bootstrap of the central-bank fits (results/bootstrap_cb_100_reps.csv; 500 replicates
-per bank after the second revision). Replicates with alpha at its lower bound (0.05) are degenerate: tau = c/alpha
+"""Summarise the moving-block bootstrap of the central-bank fits (results/bootstrap_cb_100_reps.csv). The first
+B_USED = 200 replicates of each bank are used (the B = 500 run was interrupted after about 218 per bank). Replicates with alpha at its lower bound (0.05) are degenerate: tau = c/alpha
 is then unbounded. Quantiles of tau are taken over ALL replicates, with each degenerate replicate set to +inf or
 -inf according to the side of the bounded median on which its tau lies; an interval end that falls on a degenerate
 replicate is reported as unbounded (inf). Writes results/bootstrap_cb_100_summary.csv."""
@@ -7,7 +7,7 @@ import pandas as pd, numpy as np
 ALPHA_MIN = 0.05
 STATED = dict(AU=2.5, CA=2.0, CL=3.0, CO=3.0, GB=2.0, HU=3.0, IL=2.0, IN=4.0, MX=3.0, NO=2.5, NZ=2.0, PL=2.5, SE=2.0, TR=5.0)
 d = pd.read_csv("results/bootstrap_cb_100_reps.csv", header=None, names=["cc", "b", "tau", "alpha", "e_minus", "e_plus", "loss"])
-d = d.drop_duplicates(["cc", "b"])
+d = d.drop_duplicates(["cc", "b"]); B_USED = 200; d = d[d.b < B_USED]
 lp = pd.read_csv("results/cb_light_point.csv").set_index("country")
 rows = []
 for cc, z in d.groupby("cc"):

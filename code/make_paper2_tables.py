@@ -15,7 +15,7 @@ open("paper2/tab_cb_exploratory.tex", "w").write(tab(e, "tau_pi", "mean_x", None
 open("paper2/tab_cb_confirmatory.tex", "w").write(tab(c, "tau_pi", "mean_infl", None))
 if os.path.exists("results/bootstrap_cb_100_summary.csv"):
     b = pd.read_csv("results/bootstrap_cb_100_summary.csv")
-    def q(v): return "unbounded" if not np.isfinite(v) else f"{v:.2f}"
+    def q(v): return "unbounded" if not np.isfinite(v) else (f"${v:.2f}$" if v < 0 else f"{v:.2f}")
     full = pd.concat([e.set_index("country").tau_pi, c.set_index("country").tau_pi])
     L = [r"\begin{tabular}{lrrrrrrr}\toprule", r"Bank & Stated & \hd{$\hat\tau$\\(full)} & \hd{$\hat\tau$\\(light)} & 5\% & Median & 95\% & \hd{Degenerate\\replicates} \\\midrule"]
     for _, r in b.iterrows():
