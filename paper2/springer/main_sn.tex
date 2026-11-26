@@ -6,11 +6,11 @@
 \usepackage{array}\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcommand{\hd}[1]{\begin{tabular}[b]{@{}c@{}}#1\end{tabular}}
 \begin{document}
-\title[Revealed Aspiration Levels]{Revealed Aspiration Levels: Inverse Interval Goal Programming for Recovering the Targets and Priorities Behind Public Decisions}
+\title[Revealed Aspiration Levels]{Revealed Aspiration Levels: Inverse Interval Goal Programming for Recovering the Targets Behind Public Decisions}
 \author*[1]{\fnm{Quang-Vinh} \sur{Dang}}\email{vinh.dq4@buv.edu.vn}
 \affil*[1]{\orgname{British University Vietnam}, \orgaddress{\city{Hung Yen}, \country{Vietnam}}}
 \abstract{Governments, central banks and firms announce targets, but what they pursue can only be read from what they do. We formulate the recovery of aspiration levels from sequential decisions as an inverse interval goal program with asymmetric weights and an adjustment cost; a change of variables makes the optimality conditions linear in the unknowns. Aspiration levels are revealed when a decision stops at a band edge; weights are not point-identified under a linear adjustment cost but are under a quadratic one, given a rank condition and the other parameters. For one goal we give the optimal policy in closed form, an exact polynomial-time estimator and a consistency result; for several goals, a mixed-integer formulation and a multistart heuristic. Implied inflation targets of fourteen central banks have the right magnitude but are no closer to stated targets than a constant 2.5\%. Among 23 aid donors, a combined test with multiplicity adjustment finds nonlinear state dependence inconsistent with partial adjustment for one to three donors; among them Sweden and Norway reveal targets of 0.90 and 0.98\% of GNI, near their national 1\% goals, while most EU donors reveal targets well below their 0.7\% commitment. NATO allies' revealed lower edge rose from about 2\% to 3.2\% of GDP after 2022, a shift the bootstrap separates but the profile loss does not; no test distinguishes defence decisions from simpler behaviour. A one-goal model is uninformative for corporate leverage, and the goal program does not predict decisions better than simple rules; its use is in reading aspiration levels.}
-\keywords{Goal programming, Inverse optimization, Aspiration levels, Revealed preferences, Mixed-integer programming, Public budgets}
+\keywords{Goal programming, Inverse optimization, Aspiration levels, Revealed preferences, Mixed-integer programming, Central banks, Public budgets}
 \maketitle
 \section{Introduction}
 Goal programming (GP) asks a decision maker for aspiration levels and priorities and returns a decision \citep{charnes1961,tamiz1998}. Many public and corporate actors announce aspiration levels (an inflation target, a defence spending guideline, an aid commitment, a leverage policy) and then decide repeatedly. The inverse question is natural and practically important: given the observed decisions, which aspiration levels and priorities would make them optimal? Comparing revealed with stated aspirations measures credibility; tracking them over time shows when priorities change.
@@ -319,7 +319,7 @@ The estimates are those of a goal program that rationalises the decisions (Theor
 \item Funding: No funding was received for conducting this study.
 \item Competing interests: The author has no competing interests to declare that are relevant to the content of this article.
 \item Ethics approval and consent to participate: Not applicable; the study uses only published aggregate data.
-\item Data availability: All data are publicly available from the Bank for International Settlements, the OECD, Eurostat, NATO, the World Bank and SEC EDGAR; download scripts are provided with the code.
+\item Data availability: All data are publicly available from the Bank for International Settlements, the OECD, NATO and SEC EDGAR; download scripts are provided with the code.
 \item Code availability: The code and data that reproduce all tables and figures are available at \url{https://github.com/vinhqdang/Multiple-Objective-Programming-and-Goal-Programming}.
 \item Author contribution: The sole author designed the study, carried out the analysis and wrote the manuscript.
 \end{itemize}

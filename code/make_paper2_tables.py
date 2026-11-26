@@ -46,7 +46,7 @@ du = pd.read_csv("results/defence_uncertainty.csv").set_index("period")
 L = [r"\begin{tabular}{lrcrrrcc}\toprule", r"Period & $n$ & Band & \hd{Step\\down} & \hd{Step\\up} & \hd{Mean\\level} & \hd{Lower edge:\\2\% set} & \hd{Lower edge:\\bootstrap 90\%}\\\midrule"]
 for _, r in de.iterrows():
     u = du.loc[r.period]
-    L.append(f"{r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & {r.step_cut:.2f} & {r.step_raise:.2f} & {r.mean_level:.2f} & [{u.set2_lo:.2f}, {u.set2_hi:.2f}] & [{u.boot_lo5:.2f}, {u.boot_lo95:.2f}]\\\\")
+    L.append(f"{r.period} & {int(r.n)} & [{r.band_lo:.2f}, {r.band_hi:.2f}$^{{*}}$] & -- & {r.step_raise:.2f} & {r.mean_level:.2f} & [{u.set2_lo:.2f}, {u.set2_hi:.2f}] & [{u.boot_lo5:.2f}, {u.boot_lo95:.2f}]\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_defence.tex", "w").write("\n".join(L))
 L = [r"\begin{tabular}{lrcrrr}\toprule", "Industry & " + H]
 for _, r in fi.iterrows():

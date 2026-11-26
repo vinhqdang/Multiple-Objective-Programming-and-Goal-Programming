@@ -9,6 +9,7 @@ tr = pd.read_csv("results/aid_sets_truncated.csv").set_index("donor")
 pe = pd.read_csv("results/permutation_extend.csv"); pe = pe[pe.domain == "aid"].set_index("unit")
 pn = pd.read_csv("results/pa_null_extend.csv"); pn = pn[pn.domain == "aid"].set_index("unit")
 gd = pd.read_csv("results/aid_gni_drift.csv").set_index("donor")
+bs = pd.read_csv("results/aid_bootstrap_exact.csv").set_index("donor")
 d = pd.DataFrame({"p_state": pe.p, "p_pa_iid": pn.p_iid, "p_pa_block": pn.p_block})
 d["q_state"] = bh(d.p_state.values); d["q_pa_iid"] = bh(d.p_pa_iid.values); d["q_pa_block"] = bh(d.p_pa_block.values)
 d["q_comb_iid"] = bh(d[["p_state", "p_pa_iid"]].max(axis=1).values)
@@ -27,15 +28,16 @@ goals = [("SWE", 1.0, "1.0 (N, to 2022)"), ("NOR", 1.0, "1.0 (N, 2005)"), ("LUX"
          ("DNK", 0.8, "0.8 (N, 2011)"), ("NLD", 0.7, "0.7 (N, 2012)"), ("GBR", 0.7, "0.7 (S, 2015)")]
 for c in ["AUT", "BEL", "DEU", "ESP", "FIN", "FRA", "IRL", "ITA", "PRT"]: goals.append((c, 0.7, "0.7 (EU, 2015)"))
 L = [r"\begin{tabular}{llcccccc}\toprule",
-     r"Donor & Goal & \hd{Revealed\\band} & \hd{$\tau$ set\\(2\%)} & \hd{Goal in\\band; set} & \hd{Mean\\level} & \hd{GNI-adjusted\\$\hat\tau$ (set)} & \hd{Both tests\\(BH)}\\\midrule"]
+     r"Donor & Goal & \hd{Revealed\\band} & \hd{$\tau$ set\\(2\%)} & \hd{Bootstrap\\90\%} & \hd{Goal in\\band; set; boot.} & \hd{GNI-adjusted\\$\hat\tau$ (set)} & \hd{Both tests\\(BH)}\\\midrule"]
 rows = []
 for c, g, lab in goals:
     r = d.loc[c]; inb = r.band_lo <= g <= r.band_hi; ins = r.set2_lo <= g <= r.set2_hi
     gr = gd.loc[c] if c in gd.index else None
     gs = f"{gr.tau:.2f} ({gr.set_lo:.2f}, {gr.set_hi:.2f})" if gr is not None else "--"
     ging = (gr.set_lo <= g <= gr.set_hi) if gr is not None else np.nan
-    rows.append(dict(donor=c, goal=g, in_band=inb, in_set=ins, in_set_gni=ging, q_comb_iid=r.q_comb_iid))
-    L.append(f"{c} & {lab} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & ({r.set2_lo:.2f}, {r.set2_hi:.2f}) & {'yes' if inb else 'no'}; {'yes' if ins else 'no'} & {r.mean_level:.2f} & {gs} & {r.q_comb_iid:.2f}\\\\")
+    bb = bs.loc[c]; inbo = bb.boot_q05 <= g <= bb.boot_q95
+    rows.append(dict(donor=c, goal=g, in_band=inb, in_set=ins, in_boot=inbo, in_set_gni=ging, q_comb_iid=r.q_comb_iid))
+    L.append(f"{c} & {lab} & [{r.band_lo:.2f}, {r.band_hi:.2f}] & ({r.set2_lo:.2f}, {r.set2_hi:.2f}) & ({bb.boot_q05:.2f}, {bb.boot_q95:.2f}) & {'yes' if inb else 'no'}; {'yes' if ins else 'no'}; {'yes' if inbo else 'no'} & {gs} & {r.q_comb_iid:.2f}\\\\")
 L.append(r"\bottomrule\end{tabular}"); open("paper2/tab_aid_goals.tex", "w").write("\n".join(L))
 pd.DataFrame(rows).to_csv("results/aid_goal_comparison.csv", index=False)
 print(pd.DataFrame(rows).to_string(index=False))

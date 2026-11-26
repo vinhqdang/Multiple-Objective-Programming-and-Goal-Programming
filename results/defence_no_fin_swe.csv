@@ -1,0 +1,3 @@
+period,n,loss,tau,b,band_lo,band_hi,step_cut,step_raise,mean_level,share_above_hi,share_below_lo
+2015-2021,203,0.1167,2.735,0.745,1.99,3.48,0.2,0.03,1.496,0.025,0.823
+2022-2025,115,0.2199,3.435,0.225,3.21,3.66,0.21,0.12,1.856,0.026,0.922

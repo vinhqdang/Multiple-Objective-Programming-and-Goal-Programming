@@ -8,7 +8,7 @@ Please consider the enclosed manuscript, "Revealed Aspiration Levels: Inverse In
 
 **Contribution to economic and social sciences.** Public actors announce targets; their decisions reveal what they pursue. We check the method on central banks, whose targets are public: the implied targets have the right magnitude and are closer than average inflation where the two diverged strongly (Turkey), but over fourteen banks they are no closer than a constant 2.5%, and we say so. We then estimate revealed aid targets for 23 donor countries. Under a combined test, one to three donors show clear nonlinear state dependence; Sweden and Norway reveal targets of 0.90 and 0.98% of GNI, close to but, for Sweden, just below its national 1% goal, and most EU donors reveal targets well below their 0.7% commitment. For NATO allies the revealed lower edge of spending rose from about 2% to 3.2% of GDP after 2022; the bootstrap separates the two periods but the profile loss does not, and no test distinguishes defence decisions from simpler behaviour, so we present this result as descriptive. We report where the method is less reliable (outcomes already at target; a weakly determined pre-2022 defence edge; corporate leverage with a single goal).
 
-All data are public (BIS, OECD, Eurostat, NATO, SEC EDGAR), and the code that reproduces every table is available at https://github.com/vinhqdang/Multiple-Objective-Programming-and-Goal-Programming.
+All data are public (BIS, OECD, NATO, SEC EDGAR), and the code that reproduces every table is available at https://github.com/vinhqdang/Multiple-Objective-Programming-and-Goal-Programming.
 
 Sincerely,
 
