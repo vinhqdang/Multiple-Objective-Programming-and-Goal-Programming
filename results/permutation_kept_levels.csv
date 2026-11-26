@@ -1,0 +1,3 @@
+variant,n_series,n_obs,B,reject_5,reject_10,mean_p
+kept_levels,200,60,199,0.325,0.485,0.165
+rebuilt_levels_reference,200,60,199,0.02,0.07,0.504
