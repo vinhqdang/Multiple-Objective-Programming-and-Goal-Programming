@@ -18,7 +18,7 @@ rows = []
 def save():
     pd.DataFrame(rows).to_csv("results/milp_sensitivity.csv", index=False)
 
-def solve_lin(X, D, eps, time_limit=TL, M=30.0, Omega=5.0, delta=1e-3):
+def solve_lin(X, D, eps, time_limit=300, M=30.0, Omega=5.0, delta=1e-3):
     p, V = migp._build_strict(X, D, eps, delta, Omega, M, 8.0, (0.05, 3.0))
     t0 = time.time(); p.solve(solver=cp.HIGHS, time_limit=time_limit, threads=1); sec = time.time() - t0
     st = p.solver_stats.extra_stats if p.solver_stats is not None else None
@@ -43,7 +43,7 @@ if __name__ == "__main__":
         Dlin0 = migp.forward_batch(X, TRUE["alpha"], TRUE["tau"], TRUE["b"], TRUE["op"], TRUE["om"])
         D = Dlin0 + rng.laplace(0, 0.05, T)
         for eps in (0.02, 0.05, 0.1):
-            r = solve_lin(X, D, eps)
+            r = solve_lin(X, D, eps, time_limit=300)
             rows.append(dict(model="linear", T=T, seed=SEED, setting=f"eps={eps}", M=30, Omega=5, eps=eps,
-                             time_limit=TL, loss_true=float(np.abs(D - Dlin0).mean()), **r))
+                             time_limit=300, loss_true=float(np.abs(D - Dlin0).mean()), **r))
             save(); print(rows[-1], flush=True)
